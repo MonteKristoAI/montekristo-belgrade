@@ -137,15 +137,6 @@ export const LivingAISystem = ({ className = "" }: LivingAISystemProps) => {
         <BackgroundIntelligenceGrid />
       </div>
 
-      {/* Layer 2: Business OS Core - enlarged and enhanced */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <BusinessOSCore 
-          className={`transition-all duration-1000 scale-125 ${
-            isLoaded ? 'animate-fade-in opacity-100' : 'opacity-0'
-          }`}
-          hoveredAgent={hoveredAgent}
-        />
-      </div>
 
       {/* Layer 3: Connection Lines from Business OS to all agents */}
       {isLoaded && agentsWithAngles.map(agent => {
