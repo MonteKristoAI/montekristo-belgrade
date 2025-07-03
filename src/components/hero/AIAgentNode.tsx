@@ -42,16 +42,6 @@ export const AIAgentNode = ({
         onMouseEnter={() => onHover(agent.id)}
         onMouseLeave={() => onHover(null)}
       >
-        <div
-          className={`w-14 h-14 rounded-full transition-all duration-500 ${
-            isHovered ? 'scale-110' : 'scale-100'
-          }`}
-          style={{
-            background: `radial-gradient(circle, ${agent.color}95, ${agent.color}70, ${agent.color}30)`,
-            boxShadow: `0 0 ${isHovered ? '25' : '15'}px ${agent.color}40, 0 4px 15px rgba(0,0,0,0.1)`,
-            border: `2px solid ${agent.color}60`
-          }}
-        />
       </div>
 
       {/* Premium Agent Label - no overlaps, consistent styling */}
