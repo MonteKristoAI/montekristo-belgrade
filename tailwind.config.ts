@@ -18,9 +18,6 @@ export default {
 			}
 		},
 		extend: {
-			fontFamily: {
-				'inter': ['Inter', 'sans-serif'],
-			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -121,48 +118,6 @@ export default {
 					'50%': {
 						filter: 'drop-shadow(0 0 20px rgba(139, 92, 246, 0.8))'
 					}
-				},
-				'neural-pulse': {
-					'0%, 100%': {
-						transform: 'scale(1)',
-						opacity: '0.6'
-					},
-					'50%': {
-						transform: 'scale(1.05)',
-						opacity: '0.9'
-					}
-				},
-				'data-flow': {
-					'0%': {
-						strokeDashoffset: '100'
-					},
-					'100%': {
-						strokeDashoffset: '0'
-					}
-				},
-				'agent-build': {
-					'0%': {
-						transform: 'scale(0)',
-						opacity: '0'
-					},
-					'50%': {
-						transform: 'scale(1.2)',
-						opacity: '0.8'
-					},
-					'100%': {
-						transform: 'scale(1)',
-						opacity: '1'
-					}
-				},
-				'connection-pulse': {
-					'0%, 100%': {
-						strokeWidth: '1.5',
-						opacity: '0.4'
-					},
-					'50%': {
-						strokeWidth: '3',
-						opacity: '0.8'
-					}
 				}
 			},
 			animation: {
@@ -171,11 +126,7 @@ export default {
 				'float': 'float 3s ease-in-out infinite',
 				'spin-slow': 'spin-slow 8s linear infinite',
 				'fade-in': 'fade-in 0.6s ease-out',
-				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
-				'neural-pulse': 'neural-pulse 3s ease-in-out infinite',
-				'data-flow': 'data-flow 2s ease-in-out infinite',
-				'agent-build': 'agent-build 2s ease-out',
-				'connection-pulse': 'connection-pulse 2s ease-in-out infinite'
+				'pulse-glow': 'pulse-glow 2s ease-in-out infinite'
 			}
 		}
 	},
