@@ -79,6 +79,13 @@ export const AIBlueprintGenerator = ({ className = "" }: AIBlueprintGeneratorPro
               repeatCount="indefinite"
             />
           </linearGradient>
+          
+          {/* Light Beam Gradient */}
+          <linearGradient id="lightBeamGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.8"/>
+            <stop offset="40%" stopColor="#0EA5E9" stopOpacity="0.6"/>
+            <stop offset="100%" stopColor="#0EA5E9" stopOpacity="0"/>
+          </linearGradient>
         </defs>
 
         {/* Grid Background */}
@@ -116,6 +123,44 @@ export const AIBlueprintGenerator = ({ className = "" }: AIBlueprintGeneratorPro
             </g>
           );
         })}
+
+        {/* Light Beam - positioned behind core but above connection lines */}
+        <g>
+          <path
+            d="M 160 160 Q 180 140 220 100"
+            stroke="url(#lightBeamGradient)"
+            strokeWidth="8"
+            fill="none"
+            strokeLinecap="round"
+            style={{ 
+              filter: 'drop-shadow(0 0 8px rgba(139, 92, 246, 0.4))',
+              opacity: hoveredAgent ? '0.7' : '0.5'
+            }}
+            className="transition-opacity duration-300"
+          >
+            <animate
+              attributeName="stroke-opacity"
+              values="0.3;0.7;0.3"
+              dur="3.5s"
+              repeatCount="indefinite"
+            />
+          </path>
+          <path
+            d="M 160 160 Q 180 140 220 100"
+            stroke="url(#lightBeamGradient)"
+            strokeWidth="3"
+            fill="none"
+            strokeLinecap="round"
+            style={{ opacity: 0.8 }}
+          >
+            <animate
+              attributeName="stroke-opacity"
+              values="0.4;1;0.4"
+              dur="3.5s"
+              repeatCount="indefinite"
+            />
+          </path>
+        </g>
 
         {/* Central Business OS Core */}
         <g>
