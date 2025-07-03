@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { AgentCube } from "@/components/AgentCube";
+import { AIBlueprintGenerator } from "@/components/AIBlueprintGenerator";
 
 export const Hero = () => {
   return (
@@ -48,28 +48,11 @@ export const Hero = () => {
             </div>
           </div>
           
-          {/* Right: 3D Cubes */}
+          {/* Right: AI Blueprint Generator */}
           <div className="flex justify-center items-center">
-            <div className="relative">
-              <AgentCube 
-                label="SDR Agent" 
-                position="top" 
-                delay={0}
-                alt="3D cube representing modular AI agents for sales, CRM, and content"
-              />
-              <AgentCube 
-                label="CRM Agent" 
-                position="middle" 
-                delay={0.2}
-                alt="3D cube representing modular AI agents for sales, CRM, and content"
-              />
-              <AgentCube 
-                label="Content Repurposer" 
-                position="bottom" 
-                delay={0.4}
-                alt="3D cube representing modular AI agents for sales, CRM, and content"
-              />
-            </div>
+            <AIBlueprintGenerator 
+              className="animate-fade-in"
+            />
           </div>
         </div>
       </div>

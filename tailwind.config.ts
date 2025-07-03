@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -101,13 +100,33 @@ export default {
 					'100%': {
 						transform: 'rotate(360deg)'
 					}
+				},
+				'fade-in': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(20px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'pulse-glow': {
+					'0%, 100%': {
+						filter: 'drop-shadow(0 0 10px rgba(139, 92, 246, 0.5))'
+					},
+					'50%': {
+						filter: 'drop-shadow(0 0 20px rgba(139, 92, 246, 0.8))'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'float': 'float 3s ease-in-out infinite',
-				'spin-slow': 'spin-slow 8s linear infinite'
+				'spin-slow': 'spin-slow 8s linear infinite',
+				'fade-in': 'fade-in 0.6s ease-out',
+				'pulse-glow': 'pulse-glow 2s ease-in-out infinite'
 			}
 		}
 	},
