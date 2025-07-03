@@ -16,7 +16,6 @@ interface AIAgentNodeProps {
   onHover: (id: number | null) => void;
   pulsePhase: number;
   className?: string;
-  style?: React.CSSProperties;
 }
 
 export const AIAgentNode = ({ 
@@ -26,139 +25,120 @@ export const AIAgentNode = ({
   isHovered, 
   onHover, 
   pulsePhase,
-  className = "",
-  style
+  className = ""
 }: AIAgentNodeProps) => {
-  const [showBenefit, setShowBenefit] = useState(false);
-
-  // Show benefit popup randomly
-  useState(() => {
-    const timer = setTimeout(() => {
-      setShowBenefit(true);
-      setTimeout(() => setShowBenefit(false), 3000);
-    }, Math.random() * 15000 + 8000);
-    
-    return () => clearTimeout(timer);
-  });
 
   return (
-    <div className={`absolute pointer-events-none ${className}`} style={style}>
+    <div className={`absolute pointer-events-none ${className}`}>
       {/* Agent Node */}
       <div
         className="relative cursor-pointer pointer-events-auto"
         style={{
-          left: `${position.x - 25}px`,
-          top: `${position.y - 25}px`,
-          width: '50px',
-          height: '50px',
+          left: `${position.x - 28}px`,
+          top: `${position.y - 28}px`,
+          width: '56px',
+          height: '56px',
         }}
         onMouseEnter={() => onHover(agent.id)}
         onMouseLeave={() => onHover(null)}
       >
-        <svg width="50" height="50" viewBox="0 0 50 50">
+        <svg width="56" height="56" viewBox="0 0 56 56">
           <defs>
             <radialGradient id={`gradient-${agent.id}`} cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor={agent.color} stopOpacity="0.9"/>
-              <stop offset="70%" stopColor={agent.color} stopOpacity="0.6"/>
-              <stop offset="100%" stopColor={agent.color} stopOpacity="0.2"/>
+              <stop offset="0%" stopColor={agent.color} stopOpacity="0.95"/>
+              <stop offset="70%" stopColor={agent.color} stopOpacity="0.7"/>
+              <stop offset="100%" stopColor={agent.color} stopOpacity="0.3"/>
             </radialGradient>
             
             <filter id={`glow-${agent.id}`} x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+              <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
               <feMerge>
                 <feMergeNode in="coloredBlur"/>
                 <feMergeNode in="SourceGraphic"/>
               </feMerge>
             </filter>
-
-            <linearGradient id={`labelGradient-${agent.id}`} x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor={agent.color} stopOpacity="0.9"/>
-              <stop offset="100%" stopColor={agent.color} stopOpacity="0.7"/>
-            </linearGradient>
           </defs>
 
-          {/* Outer glow ring */}
+          {/* Outer glow ring - breathing effect */}
           <circle
-            cx="25"
-            cy="25"
-            r={isHovered ? "22" : "18"}
+            cx="28"
+            cy="28"
+            r={isHovered ? "25" : "22"}
             fill="none"
             stroke={agent.color}
-            strokeWidth="1"
-            strokeOpacity={0.4 + Math.sin((pulsePhase + agent.id * 15) * 0.08) * 0.2}
-            className="transition-all duration-300"
+            strokeWidth="1.5"
+            strokeOpacity={0.4 + Math.sin((pulsePhase + agent.id * 15) * 0.08) * 0.3}
+            className="transition-all duration-500"
+            filter={`url(#glow-${agent.id})`}
           />
 
-          {/* Main node */}
+          {/* Main node with enhanced hover effect */}
           <circle
-            cx="25"
-            cy="25"
-            r={isHovered ? "16" : "13"}
+            cx="28"
+            cy="28"
+            r={isHovered ? "18" : "15"}
             fill={`url(#gradient-${agent.id})`}
             filter={`url(#glow-${agent.id})`}
-            className="transition-all duration-300"
+            className="transition-all duration-500"
             style={{
-              opacity: isHovered ? 1 : 0.8,
+              opacity: isHovered ? 1 : 0.85,
               transform: isHovered ? 'scale(1.1)' : 'scale(1)'
             }}
+          />
+
+          {/* Inner core */}
+          <circle
+            cx="28"
+            cy="28"
+            r="8"
+            fill={agent.color}
+            opacity={0.3 + Math.sin((pulsePhase + agent.id * 20) * 0.06) * 0.2}
+            className="animate-pulse"
           />
         </svg>
       </div>
 
-      {/* Enhanced Agent Label with collision avoidance */}
+      {/* Premium Agent Label - no overlaps, consistent styling */}
       <div
-        className={`font-inter font-medium text-xs transition-all duration-300 ${
-          isHovered ? 'opacity-100 scale-105 font-semibold' : 'opacity-90'
+        className={`font-space-grotesk font-semibold text-sm transition-all duration-500 ${
+          isHovered ? 'opacity-100 scale-105' : 'opacity-90'
         }`}
         style={{
-          left: `${labelPosition.x - 45}px`,
-          top: `${labelPosition.y - 8}px`,
-          width: '90px',
+          left: `${labelPosition.x - 60}px`,
+          top: `${labelPosition.y - 12}px`,
+          width: '120px',
           textAlign: 'center',
-          background: `linear-gradient(135deg, ${agent.color}20, ${agent.color}10)`,
+          background: `linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85))`,
           color: agent.color,
-          textShadow: `0 0 10px ${agent.color}40, 0 1px 2px rgba(255,255,255,0.8)`,
-          backdropFilter: 'blur(8px)',
-          border: `1px solid ${agent.color}30`,
-          borderRadius: '12px',
-          padding: '4px 8px',
+          textShadow: `0 0 8px ${agent.color}30, 0 1px 3px rgba(0,0,0,0.1)`,
+          backdropFilter: 'blur(10px)',
+          border: `1px solid ${agent.color}20`,
+          borderRadius: '16px',
+          padding: '6px 12px',
           letterSpacing: '0.025em',
-          fontSize: '11px',
-          fontWeight: '500'
+          fontSize: '13px',
+          fontWeight: '600',
+          boxShadow: `0 4px 12px rgba(0,0,0,0.1), 0 0 0 1px rgba(255,255,255,0.5) inset`
         }}
       >
         {agent.label}
       </div>
 
-      {/* Hover Tooltip */}
+      {/* Hover Tooltip - cleaner, more premium */}
       {isHovered && (
         <div
-          className="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-lg px-3 py-2 text-xs text-[#041122] shadow-lg animate-fade-in pointer-events-none font-inter"
+          className="bg-white/98 backdrop-blur-sm border border-gray-200/50 rounded-xl px-4 py-3 text-sm text-[#041122] shadow-xl animate-fade-in pointer-events-none font-inter"
           style={{
-            left: `${position.x - 60}px`,
-            top: `${position.y - 65}px`,
-            width: '120px',
+            left: `${position.x - 80}px`,
+            top: `${position.y - 75}px`,
+            width: '160px',
             textAlign: 'center',
-            zIndex: 10
+            zIndex: 10,
+            boxShadow: '0 8px 32px rgba(0,0,0,0.12), 0 0 0 1px rgba(255,255,255,0.8) inset'
           }}
         >
-          {agent.description}
-        </div>
-      )}
-
-      {/* Benefit Popup */}
-      {showBenefit && (
-        <div
-          className="bg-gradient-to-r from-green-500 to-emerald-600 text-white text-xs font-semibold px-2 py-1 rounded-full shadow-lg animate-fade-in pointer-events-none font-inter"
-          style={{
-            left: `${position.x - 40}px`,
-            top: `${position.y - 70}px`,
-            width: '80px',
-            textAlign: 'center',
-            zIndex: 15
-          }}
-        >
-          {agent.benefit}
+          <div className="font-medium text-gray-900 mb-1">{agent.label}</div>
+          <div className="text-xs text-gray-600 leading-relaxed">{agent.description}</div>
         </div>
       )}
     </div>

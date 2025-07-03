@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { BackgroundIntelligenceGrid } from "./BackgroundIntelligenceGrid";
 import { BusinessOSCore } from "./BusinessOSCore";
@@ -67,7 +68,6 @@ export const LivingAISystem = ({ className = "" }: LivingAISystemProps) => {
   const [adaptationPhase, setAdaptationPhase] = useState(0);
   const [pulsePhase, setPulsePhase] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [newAgentSpawning, setNewAgentSpawning] = useState(false);
 
   // System initialization
   useEffect(() => {
@@ -75,11 +75,11 @@ export const LivingAISystem = ({ className = "" }: LivingAISystemProps) => {
     return () => clearTimeout(timer);
   }, []);
 
-  // System adaptation cycle
+  // System adaptation cycle - slower, more elegant
   useEffect(() => {
     const interval = setInterval(() => {
       setAdaptationPhase(prev => (prev + 1) % 4);
-    }, 8000);
+    }, 12000);
     return () => clearInterval(interval);
   }, []);
 
@@ -87,7 +87,7 @@ export const LivingAISystem = ({ className = "" }: LivingAISystemProps) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setPulsePhase(prev => (prev + 1) % 100);
-    }, 60);
+    }, 80);
     return () => clearInterval(interval);
   }, []);
 
@@ -95,25 +95,16 @@ export const LivingAISystem = ({ className = "" }: LivingAISystemProps) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setSystemPhase(prev => (prev + 1) % 100);
-    }, 100);
+    }, 120);
     return () => clearInterval(interval);
   }, []);
 
-  // New agent spawning
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setNewAgentSpawning(true);
-      setTimeout(() => setNewAgentSpawning(false), 3000);
-    }, 15000);
-    return () => clearInterval(interval);
-  }, []);
-
+  // Fixed positioning to avoid overlaps - consistent radius and spacing
   const getAgentPosition = (agent: AgentWithAngle) => {
-    const baseRadius = 140;
-    const adaptationOffset = Math.sin((adaptationPhase + agent.id) * 0.5) * 15;
-    const radius = baseRadius + adaptationOffset + (agent.id % 2 === 0 ? 12 : -12);
-    const adjustedAngle = agent.angle + (adaptationPhase * 8) + Math.sin(systemPhase * 0.02) * 5;
-    const radian = (adjustedAngle * Math.PI) / 180;
+    const baseRadius = 160; // Increased for better spacing
+    const gentleFloat = Math.sin((systemPhase + agent.id * 20) * 0.02) * 6; // Gentle floating
+    const radius = baseRadius + gentleFloat;
+    const radian = (agent.angle * Math.PI) / 180;
     
     return {
       x: 192 + Math.cos(radian) * radius,
@@ -121,12 +112,10 @@ export const LivingAISystem = ({ className = "" }: LivingAISystemProps) => {
     };
   };
 
-  // Enhanced label positioning with collision avoidance
+  // Fixed label positioning - no overlaps, consistent distance
   const getLabelPosition = (agent: AgentWithAngle) => {
-    const nodePos = getAgentPosition(agent);
-    const labelRadius = 180; // Consistent radius for all labels
-    const adjustedAngle = agent.angle + (adaptationPhase * 8) + Math.sin(systemPhase * 0.02) * 5;
-    const radian = (adjustedAngle * Math.PI) / 180;
+    const labelRadius = 210; // Fixed distance for all labels
+    const radian = (agent.angle * Math.PI) / 180;
     
     return {
       x: 192 + Math.cos(radian) * labelRadius,
@@ -134,20 +123,23 @@ export const LivingAISystem = ({ className = "" }: LivingAISystemProps) => {
     };
   };
 
+  // Even distribution of agents around circle - no overlaps
   const agentsWithAngles: AgentWithAngle[] = agents.map((agent, i) => ({
     ...agent,
-    angle: i * 72 // 360/5 agents
+    angle: i * 72 // 360/5 = 72 degrees apart
   }));
 
   return (
     <div className={`relative w-96 h-96 ${className}`}>
-      {/* Layer 1: Background Intelligence Grid */}
-      <BackgroundIntelligenceGrid />
+      {/* Layer 1: Background Intelligence Grid - reduced opacity for premium feel */}
+      <div style={{ opacity: 0.12 }}>
+        <BackgroundIntelligenceGrid />
+      </div>
 
-      {/* Layer 2: Business OS Core */}
+      {/* Layer 2: Business OS Core - enlarged and enhanced */}
       <div className="absolute inset-0 flex items-center justify-center">
         <BusinessOSCore 
-          className={`transition-all duration-1000 ${
+          className={`transition-all duration-1000 scale-110 ${
             isLoaded ? 'animate-fade-in opacity-100' : 'opacity-0'
           }`}
         />
@@ -174,7 +166,7 @@ export const LivingAISystem = ({ className = "" }: LivingAISystemProps) => {
         );
       })}
 
-      {/* Layer 4: AI Agent Nodes with enhanced positioning */}
+      {/* Layer 4: AI Agent Nodes with premium positioning */}
       {agentsWithAngles.map(agent => {
         const position = getAgentPosition(agent);
         const labelPosition = getLabelPosition(agent);
@@ -196,47 +188,38 @@ export const LivingAISystem = ({ className = "" }: LivingAISystemProps) => {
         );
       })}
 
-      {/* New Agent Spawning Effect */}
-      {newAgentSpawning && (
-        <div 
-          className="absolute animate-agent-build"
-          style={{
-            left: '170px',
-            top: '100px',
-            width: '44px',
-            height: '44px'
-          }}
-        >
-          <svg width="44" height="44" viewBox="0 0 44 44">
-            <circle
-              cx="22"
-              cy="22"
-              r="18"
-              fill="none"
-              stroke="#34D399"
-              strokeWidth="2"
-              className="animate-pulse"
-            />
-            <circle
-              cx="22"
-              cy="22"
-              r="12"
-              fill="#34D399"
-              opacity="0.6"
-              className="animate-ping"
-            />
-          </svg>
-        </div>
-      )}
-
-      {/* Enhanced System Status Indicator */}
-      <div className="absolute bottom-4 right-4 text-xs font-inter font-medium">
-        <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-full px-3 py-1.5 border border-gray-200/50">
-          <div 
-            className="w-2 h-2 rounded-full bg-green-500 animate-pulse"
-            style={{ animationDuration: '1.5s' }}
+      {/* Ambient glow particles for living ecosystem feel */}
+      {[...Array(6)].map((_, i) => {
+        const floatRadius = 80 + (i * 30);
+        const angle = (systemPhase + i * 60) * 0.5;
+        const x = 192 + Math.cos(angle * Math.PI / 180) * floatRadius;
+        const y = 192 + Math.sin(angle * Math.PI / 180) * floatRadius;
+        
+        return (
+          <div
+            key={`particle-${i}`}
+            className="absolute w-1 h-1 bg-blue-400/30 rounded-full animate-pulse"
+            style={{
+              left: `${x}px`,
+              top: `${y}px`,
+              animationDelay: `${i * 0.8}s`,
+              animationDuration: '4s'
+            }}
           />
-          <span className="text-[#041122]/70">System Adapting</span>
+        );
+      })}
+
+      {/* Minimal system status indicator */}
+      <div className="absolute bottom-4 right-4 text-xs font-inter font-medium">
+        <div className="flex items-center gap-2 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1.5 border border-gray-200/30 shadow-sm">
+          <div 
+            className="w-2 h-2 rounded-full bg-emerald-500"
+            style={{ 
+              animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              filter: 'drop-shadow(0 0 4px rgba(16, 185, 129, 0.4))'
+            }}
+          />
+          <span className="text-[#041122]/70 font-medium">System Active</span>
         </div>
       </div>
     </div>
