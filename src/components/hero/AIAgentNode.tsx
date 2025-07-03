@@ -30,20 +30,6 @@ export const AIAgentNode = ({
 
   return (
     <div className={`absolute pointer-events-none ${className}`}>
-      {/* Agent Node */}
-      <div
-        className="relative cursor-pointer pointer-events-auto"
-        style={{
-          left: `${position.x - 28}px`,
-          top: `${position.y - 28}px`,
-          width: '56px',
-          height: '56px',
-        }}
-        onMouseEnter={() => onHover(agent.id)}
-        onMouseLeave={() => onHover(null)}
-      >
-      </div>
-
       {/* Premium Agent Label - no overlaps, consistent styling */}
       <div
         className={`font-space-grotesk font-semibold text-sm transition-all duration-500 ${
