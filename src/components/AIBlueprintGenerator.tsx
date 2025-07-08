@@ -1,5 +1,5 @@
 
-import { BusinessOSGraph } from './business-os/BusinessOSGraph';
+import { IntelligenceCores } from './IntelligenceCores';
 
 interface AIBlueprintGeneratorProps {
   className?: string;
@@ -8,7 +8,7 @@ interface AIBlueprintGeneratorProps {
 export const AIBlueprintGenerator = ({ className = "" }: AIBlueprintGeneratorProps) => {
   return (
     <div className={`flex justify-center items-center ${className}`}>
-      <BusinessOSGraph />
+      <IntelligenceCores />
     </div>
   );
 };
