@@ -6,6 +6,7 @@ import { EdgeComponent } from './EdgeComponent';
 import { TooltipPanel } from './TooltipPanel';
 import { ExpandedView } from './ExpandedView';
 import { BackgroundGrid } from './BackgroundGrid';
+import { SynapseParticles } from './SynapseParticles';
 import { businessOSData } from './data';
 import { NodeData, LinkData, TooltipData, ExpandedViewData } from './types';
 
@@ -150,7 +151,8 @@ export const BusinessOSGraph = ({ className = "" }: BusinessOSGraphProps) => {
           width={width}
           height={height}
           viewBox={`0 0 ${width} ${height}`}
-          className="border border-border rounded-lg shadow-lg bg-background/50 backdrop-blur-sm"
+          className="overflow-visible"
+          style={{ background: 'transparent' }}
         >
           {/* Background grid and ambient effects */}
           <BackgroundGrid width={width} height={height} />
@@ -163,6 +165,9 @@ export const BusinessOSGraph = ({ className = "" }: BusinessOSGraphProps) => {
               isHighlighted={isLinkHighlighted(link)}
             />
           ))}
+
+          {/* Synapse particles */}
+          <SynapseParticles links={links} />
 
           {/* Render nodes */}
           {nodes.map(node => (

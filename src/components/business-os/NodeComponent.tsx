@@ -10,7 +10,7 @@ interface NodeComponentProps {
 
 export const NodeComponent = ({ node, isHovered, onHover, onClick }: NodeComponentProps) => {
   const isCenterNode = node.id === 'business-os';
-  const radius = isCenterNode ? 30 : 20;
+  const radius = isCenterNode ? 45 : 25; // Larger center node
   const scale = isHovered ? 1.2 : 1;
 
   return (
@@ -31,8 +31,9 @@ export const NodeComponent = ({ node, isHovered, onHover, onClick }: NodeCompone
           </feMerge>
         </filter>
         <radialGradient id={`gradient-${node.id}`} cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor={node.color} stopOpacity="0.8"/>
-          <stop offset="100%" stopColor={node.color} stopOpacity="0.4"/>
+          <stop offset="0%" stopColor={node.color} stopOpacity="0.9"/>
+          <stop offset="70%" stopColor={node.color} stopOpacity="0.6"/>
+          <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0.3"/>
         </radialGradient>
       </defs>
 
@@ -44,11 +45,11 @@ export const NodeComponent = ({ node, isHovered, onHover, onClick }: NodeCompone
         strokeWidth="1"
         strokeOpacity="0.3"
         animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.3, 0.6, 0.3]
+          scale: [1, 1.15, 1],
+          opacity: [0.4, 0.8, 0.4]
         }}
         transition={{
-          duration: 6,
+          duration: 4,
           repeat: Infinity,
           ease: "easeInOut"
         }}

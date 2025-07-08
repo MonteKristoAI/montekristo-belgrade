@@ -11,7 +11,7 @@ export const BackgroundGrid = ({ width, height }: BackgroundGridProps) => {
   const verticalLines = Math.ceil(width / gridSize);
 
   return (
-    <g className="opacity-10">
+    <g className="opacity-5">
       <defs>
         <pattern
           id="background-grid"
