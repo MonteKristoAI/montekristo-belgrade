@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { AIBlueprintGenerator } from "@/components/AIBlueprintGenerator";
+import aiCoresImage from "@/assets/ai-intelligence-cores.png";
 
 export const Hero = () => {
   return (
@@ -48,10 +48,12 @@ export const Hero = () => {
             </div>
           </div>
           
-          {/* Right: AI Blueprint Generator */}
+          {/* Right: AI Intelligence Cores */}
           <div className="flex justify-center items-center">
-            <AIBlueprintGenerator 
-              className="animate-fade-in"
+            <img 
+              src={aiCoresImage}
+              alt="Four luminous AI intelligence cores hover and connect, illustrating each step in the AI transformation protocol: Discovery, Blueprint, Deployment, and Optimisation"
+              className="w-96 h-96 object-contain animate-fade-in hover:scale-105 transition-transform duration-300"
             />
           </div>
         </div>
