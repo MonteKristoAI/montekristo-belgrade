@@ -41,34 +41,81 @@ export const ForceSimulation = ({
       centerNode.fy = height / 2;
     }
 
-    // Add orbital motion to peripheral nodes
-    let orbitAngle = 0;
-    const orbitSpeed = Math.PI / 36; // 5 degrees per second at 60fps
-    
-    const animate = () => {
-      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        orbitAngle += orbitSpeed / 60; // Adjust for frame rate
+    // Store original positions for rotation
+    const originalPositions = new Map();
+    data.nodes.forEach(node => {
+      if (node.id !== 'business-os') {
+        originalPositions.set(node.id, { x: node.x, y: node.y });
+      }
+    });
+
+    // Idle animation variables
+    let baseRotationAngle = 0;
+    let animationStartTime = 0;
+    let isUserInteracting = false;
+    let animationId: number;
+
+    // Track user interactions
+    const handleInteractionStart = () => { isUserInteracting = true; };
+    const handleInteractionEnd = () => { 
+      setTimeout(() => { isUserInteracting = false; }, 500); // Resume after 500ms
+    };
+
+    // Add interaction listeners
+    const graphElement = document.getElementById('business-os-graph');
+    if (graphElement) {
+      graphElement.addEventListener('mouseenter', handleInteractionStart);
+      graphElement.addEventListener('mouseleave', handleInteractionEnd);
+      graphElement.addEventListener('click', handleInteractionStart);
+    }
+
+    const idleAnimate = (currentTime: number) => {
+      if (!animationStartTime) animationStartTime = currentTime;
+      
+      const elapsed = currentTime - animationStartTime;
+      const cycleTime = 5000; // 5 seconds total cycle
+      const rotationTime = 500; // 0.5 seconds rotation
+      const holdTime = 4500; // 4.5 seconds hold
+      
+      const cyclePosition = elapsed % cycleTime;
+      
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 
+          !isUserInteracting && 
+          cyclePosition <= rotationTime) {
+        
+        // During rotation phase (first 0.5 seconds)
+        const rotationProgress = cyclePosition / rotationTime;
+        const targetAngle = baseRotationAngle + (Math.PI / 6) * rotationProgress; // 30 degrees
         
         data.nodes.forEach(node => {
           if (node.id !== 'business-os' && node.x && node.y) {
             const centerX = width / 2;
             const centerY = height / 2;
             const radius = Math.sqrt(Math.pow(node.x - centerX, 2) + Math.pow(node.y - centerY, 2));
-            const angle = Math.atan2(node.y - centerY, node.x - centerX) + orbitSpeed / 60;
+            const currentAngle = Math.atan2(node.y - centerY, node.x - centerX);
             
-            node.x = centerX + radius * Math.cos(angle);
-            node.y = centerY + radius * Math.sin(angle);
+            // Smooth rotation using easing
+            const easedProgress = 1 - Math.pow(1 - rotationProgress, 3); // Ease out cubic
+            const newAngle = currentAngle + (Math.PI / 6) * easedProgress / 60; // Incremental
+            
+            node.x = centerX + radius * Math.cos(newAngle);
+            node.y = centerY + radius * Math.sin(newAngle);
           }
         });
         
         onNodeUpdate([...data.nodes]);
         onLinkUpdate([...data.links]);
+      } else if (cyclePosition > rotationTime && cyclePosition <= cycleTime) {
+        // During hold phase - update base angle for next cycle
+        if (cyclePosition - rotationTime < 16) { // Only update once at start of hold
+          baseRotationAngle += Math.PI / 6; // Add 30 degrees for next cycle
+        }
       }
       
-      requestAnimationFrame(animate);
+      animationId = requestAnimationFrame(idleAnimate);
     };
     
-    requestAnimationFrame(animate);
+    animationId = requestAnimationFrame(idleAnimate);
 
     // Update positions on tick
     simulation.on('tick', () => {
@@ -80,6 +127,12 @@ export const ForceSimulation = ({
 
     return () => {
       simulation.stop();
+      cancelAnimationFrame(animationId);
+      if (graphElement) {
+        graphElement.removeEventListener('mouseenter', handleInteractionStart);
+        graphElement.removeEventListener('mouseleave', handleInteractionEnd);
+        graphElement.removeEventListener('click', handleInteractionStart);
+      }
     };
   }, [data, width, height, onNodeUpdate, onLinkUpdate]);
 
