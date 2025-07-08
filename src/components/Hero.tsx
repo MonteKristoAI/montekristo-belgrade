@@ -1,5 +1,6 @@
 
 import { Button } from "@/components/ui/button";
+import { IntelligenceCores } from "./IntelligenceCores";
 
 export const Hero = () => {
   return (
@@ -49,11 +50,7 @@ export const Hero = () => {
           
           {/* Right: AI Intelligence Cores */}
           <div className="flex justify-center items-center">
-            <img 
-              src="/lovable-uploads/f807bc5d-c4d5-4856-b96f-e68c82dae0cd.png"
-              alt="Four luminous AI intelligence cores hover and connect, illustrating each step in the AI transformation protocol: Discovery, Blueprint, Deployment, and Optimisation"
-              className="w-[500px] h-[500px] lg:w-[600px] lg:h-[600px] object-contain animate-fade-in hover:scale-105 transition-transform duration-300"
-            />
+            <IntelligenceCores />
           </div>
         </div>
       </div>
