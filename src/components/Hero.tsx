@@ -16,20 +16,20 @@ export const Hero = () => {
       </div>
       
       <div className="container mx-auto px-4 max-w-7xl relative z-10">
-        <div className="flex flex-col items-center space-y-8 lg:space-y-12">
-          {/* Copy */}
-          <div className="text-center space-y-8 max-w-4xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left: Copy */}
+          <div className="space-y-8 text-center lg:text-left">
             <h1 className="text-6xl lg:text-7xl font-bold text-[#041122] leading-tight">
               Deploy AI Agents That Do the Work of{" "}
               <span className="text-[#FF5C5C]">5 Teams</span>
             </h1>
             
-            <h3 className="text-xl lg:text-2xl text-[#1D1F28]/80 leading-relaxed mx-auto max-w-2xl">
+            <h3 className="text-xl lg:text-2xl text-[#1D1F28]/80 leading-relaxed">
               We embed custom AI systems that supercharge outreach, sales, CRM, and content workflows—built around{" "}
               <em className="text-[#FF5C5C]">your</em> SaaS stack.
             </h3>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button 
                 size="lg" 
                 className="bg-[#041122] hover:bg-[#041122]/90 text-white px-8 py-4 text-lg font-medium transition-all duration-150 hover:scale-105"
@@ -47,12 +47,12 @@ export const Hero = () => {
             </div>
           </div>
           
-          {/* AI Intelligence Cores - Centered */}
-          <div className="flex justify-center items-center w-full">
+          {/* Right: AI Intelligence Cores */}
+          <div className="flex justify-center items-center">
             <img 
               src="/lovable-uploads/30c29c54-fbb9-41ee-ab6e-0fe4617eb5e6.png"
               alt="Four luminous AI intelligence cores hover and connect, illustrating each step in the AI transformation protocol: Discovery, Blueprint, Deployment, and Optimisation"
-              className="w-full max-w-[400px] sm:max-w-[500px] lg:max-w-[600px] h-auto object-contain animate-fade-in hover:scale-105 transition-transform duration-300"
+              className="w-full max-w-[300px] sm:max-w-[350px] lg:max-w-[400px] h-auto object-contain animate-fade-in hover:scale-105 transition-transform duration-300"
             />
           </div>
         </div>
