@@ -49,11 +49,13 @@ export const Hero = () => {
           
           {/* Right: AI Intelligence Cores */}
           <div className="flex justify-center items-center">
-            <img 
-              src="/lovable-uploads/30c29c54-fbb9-41ee-ab6e-0fe4617eb5e6.png"
-              alt="Four luminous AI intelligence cores hover and connect, illustrating each step in the AI transformation protocol: Discovery, Blueprint, Deployment, and Optimisation"
-              className="w-full max-w-[450px] sm:max-w-[500px] lg:max-w-[550px] h-auto object-contain animate-fade-in hover:scale-105 transition-transform duration-300"
-            />
+            <div className="ai-cores-float animate-float-subtle">
+              <img 
+                src="/lovable-uploads/30c29c54-fbb9-41ee-ab6e-0fe4617eb5e6.png"
+                alt="Four luminous AI intelligence cores hover and connect, illustrating each step in the AI transformation protocol: Discovery, Blueprint, Deployment, and Optimisation"
+                className="w-full max-w-[450px] sm:max-w-[500px] lg:max-w-[550px] h-auto object-contain ai-cores-image ai-cores-entrance animate-slide-up-from-left"
+              />
+            </div>
           </div>
         </div>
       </div>

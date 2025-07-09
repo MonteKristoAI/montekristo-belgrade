@@ -102,4 +102,36 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* AI Cores Image Animations */
+  .ai-cores-image {
+    will-change: transform;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  }
+  
+  .ai-cores-image:hover {
+    transform: scale(1.03) translateY(-4px);
+    filter: drop-shadow(0 8px 25px rgba(4, 17, 34, 0.15));
+  }
+  
+  .ai-cores-image:hover .ai-cores-float {
+    animation-play-state: paused;
+  }
+  
+  /* Accessibility: Respect prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    .ai-cores-image {
+      animation: none !important;
+    }
+    
+    .ai-cores-float {
+      animation: none !important;
+    }
+    
+    .ai-cores-entrance {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
 }
