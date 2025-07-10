@@ -30,8 +30,8 @@ const Header = () => {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out",
         isScrolled 
-          ? "bg-montekristo-dark/95 backdrop-blur-md border-b border-white/10" 
-          : "bg-transparent"
+          ? "bg-white/95 backdrop-blur-md border-b border-gray-200" 
+          : "bg-white"
       )}
     >
       <div className="container mx-auto px-4 lg:px-6">
@@ -43,7 +43,7 @@ const Header = () => {
               size="md" 
               variant="default" 
               withEffect={true}
-              className="cursor-pointer"
+              className="cursor-pointer text-neutral-900"
             />
           </div>
 
@@ -53,7 +53,7 @@ const Header = () => {
               <a
                 key={item.label}
                 href={item.href}
-                className="text-white hover:text-montekristo-coral font-medium transition-colors duration-300 ease-in-out"
+                className="text-neutral-900 hover:text-[#FF6B6B] font-semibold transition-colors duration-300 ease-in-out"
               >
                 {item.label}
               </a>
@@ -66,11 +66,10 @@ const Header = () => {
             <Button
               className={cn(
                 "hidden sm:inline-flex",
-                "bg-montekristo-coral hover:bg-montekristo-coral/90",
+                "bg-[#FF6B6B] hover:bg-[#FF6B6B]/90",
                 "text-white font-medium px-6 py-2 rounded-full",
                 "transition-all duration-300 ease-in-out",
-                "hover:shadow-md hover:brightness-110",
-                "hover:shadow-montekristo-coral/25"
+                "hover:shadow-md hover:brightness-105"
               )}
             >
               Book AI Strategy Session
@@ -79,7 +78,7 @@ const Header = () => {
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden text-white hover:text-montekristo-coral transition-colors duration-300"
+              className="lg:hidden text-neutral-900 hover:text-[#FF6B6B] transition-colors duration-300"
               aria-label="Toggle mobile menu"
             >
               {isMobileMenuOpen ? (
@@ -93,13 +92,13 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden border-t border-white/10 bg-montekristo-dark/95 backdrop-blur-md">
+          <div className="lg:hidden border-t border-gray-200 bg-white/95 backdrop-blur-md">
             <nav className="py-4 space-y-2">
               {navigationItems.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
-                  className="block px-4 py-3 text-white hover:text-montekristo-coral hover:bg-white/5 font-medium transition-all duration-300 ease-in-out rounded-md"
+                  className="block px-4 py-3 text-neutral-900 hover:text-[#FF6B6B] hover:bg-gray-50 font-medium transition-all duration-300 ease-in-out rounded-md"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.label}
@@ -111,7 +110,7 @@ const Header = () => {
                 <Button
                   className={cn(
                     "w-full",
-                    "bg-montekristo-coral hover:bg-montekristo-coral/90",
+                    "bg-[#FF6B6B] hover:bg-[#FF6B6B]/90",
                     "text-white font-medium py-3 rounded-full",
                     "transition-all duration-300 ease-in-out"
                   )}

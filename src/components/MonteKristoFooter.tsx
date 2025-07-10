@@ -17,7 +17,7 @@ const MonteKristoFooter = () => {
   };
 
   return (
-    <footer className="bg-montekristo-darker py-12 px-6">
+    <footer className="bg-[#FAFAFA] py-12 px-6">
       <div className="container mx-auto max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
           
@@ -25,10 +25,10 @@ const MonteKristoFooter = () => {
           <div className="space-y-4">
             <Logo 
               size="sm" 
-              variant="light" 
-              className="mb-6"
+              variant="default" 
+              className="mb-6 text-neutral-900"
             />
-            <p className="text-montekristo-text-muted text-base leading-relaxed max-w-sm">
+            <p className="text-neutral-600 text-base leading-relaxed max-w-sm">
               Precision AI agents tailored to your sales & ops stack.
             </p>
           </div>
@@ -40,7 +40,7 @@ const MonteKristoFooter = () => {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="block text-montekristo-text-muted hover:text-white transition-colors duration-300 ease-in-out font-medium"
+                  className="block text-neutral-600 hover:text-neutral-900 transition-colors duration-300 ease-in-out font-medium"
                 >
                   {link.label}
                 </a>
@@ -51,7 +51,7 @@ const MonteKristoFooter = () => {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="block text-montekristo-text-muted hover:text-white transition-colors duration-300 ease-in-out font-medium"
+                  className="block text-neutral-600 hover:text-neutral-900 transition-colors duration-300 ease-in-out font-medium"
                 >
                   {link.label}
                 </a>
@@ -61,7 +61,7 @@ const MonteKristoFooter = () => {
 
           {/* Right Block - Newsletter */}
           <div className="space-y-4">
-            <h3 className="text-white font-semibold text-lg mb-4">
+            <h3 className="text-neutral-900 font-semibold text-lg mb-4">
               Stay Updated
             </h3>
             <div className="space-y-3">
@@ -69,17 +69,17 @@ const MonteKristoFooter = () => {
                 type="email"
                 placeholder="Enter your work email"
                 className={cn(
-                  "bg-montekristo-dark border-white/20 text-white",
-                  "placeholder:text-montekristo-text-muted",
-                  "focus:border-montekristo-coral focus:ring-montekristo-coral/20",
+                  "bg-white border-gray-300 text-neutral-900",
+                  "placeholder:text-neutral-500",
+                  "focus:border-[#FF6B6B] focus:ring-[#FF6B6B]/20",
                   "transition-all duration-300"
                 )}
               />
               <Button
                 className={cn(
                   "w-full sm:w-auto",
-                  "bg-montekristo-coral hover:bg-montekristo-coral/90",
-                  "text-white font-medium px-6 py-2 rounded-md",
+                  "bg-[#FF6B6B] hover:bg-[#FF6B6B]/90",
+                  "text-white font-medium px-4 py-2 text-sm rounded",
                   "transition-all duration-300 ease-in-out"
                 )}
               >
@@ -91,7 +91,7 @@ const MonteKristoFooter = () => {
             <div className="flex space-x-4 pt-4">
               <a 
                 href="#" 
-                className="text-montekristo-text-muted hover:text-white transition-colors duration-300"
+                className="text-neutral-600 hover:opacity-80 transition-all duration-300"
                 aria-label="Twitter"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -100,7 +100,7 @@ const MonteKristoFooter = () => {
               </a>
               <a 
                 href="#" 
-                className="text-montekristo-text-muted hover:text-white transition-colors duration-300"
+                className="text-neutral-600 hover:opacity-80 transition-all duration-300"
                 aria-label="LinkedIn"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -109,7 +109,7 @@ const MonteKristoFooter = () => {
               </a>
               <a 
                 href="#" 
-                className="text-montekristo-text-muted hover:text-white transition-colors duration-300"
+                className="text-neutral-600 hover:opacity-80 transition-all duration-300"
                 aria-label="GitHub"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -121,14 +121,14 @@ const MonteKristoFooter = () => {
         </div>
 
         {/* Bottom Border & Copyright */}
-        <div className="border-t border-white/10 mt-12 pt-8">
-          <div className="flex flex-col sm:flex-row justify-between items-center text-montekristo-text-muted text-sm">
+        <div className="border-t border-gray-300 mt-12 pt-8">
+          <div className="flex flex-col sm:flex-row justify-between items-center text-neutral-600 text-sm">
             <p>© 2024 MonteKristo AI. All rights reserved.</p>
             <div className="flex space-x-6 mt-4 sm:mt-0">
-              <a href="#privacy" className="hover:text-white transition-colors duration-300">
+              <a href="#privacy" className="hover:text-neutral-900 transition-colors duration-300">
                 Privacy Policy
               </a>
-              <a href="#terms" className="hover:text-white transition-colors duration-300">
+              <a href="#terms" className="hover:text-neutral-900 transition-colors duration-300">
                 Terms of Service
               </a>
             </div>

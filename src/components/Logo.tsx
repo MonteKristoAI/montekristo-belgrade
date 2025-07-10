@@ -30,8 +30,8 @@ const Logo = ({
   };
 
   const variantClasses = {
-    default: "text-white",
-    light: "text-white brightness-125"
+    default: "text-current",
+    light: "text-current brightness-125"
   };
 
   return (
