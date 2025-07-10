@@ -11,7 +11,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="bg-white sticky top-0 z-[999] py-2 border-b border-[#0d1b34]/5 backdrop-blur-[10px] transition-all duration-[400ms] ease-out">
+    <header className="bg-white sticky top-0 z-[999] py-3 border-b border-[#0d1b34]/5 backdrop-blur-[10px] transition-all duration-[400ms] ease-out">
       <div className="max-w-[1440px] mx-auto px-[clamp(1rem,4vw,3rem)] flex items-center justify-between gap-8">
         
         {/* Logo */}

@@ -33,7 +33,7 @@ export const Hero = () => {
   return (
     <section 
       ref={heroRef}
-      className="min-h-[70vh] flex items-start pt-8 relative overflow-hidden bg-[#FAF8F4] -mt-2"
+      className="min-h-[85vh] flex items-start pt-16 relative overflow-hidden bg-[#FAF8F4] -mt-1"
     >
       {/* Grid background */}
       <div className="absolute inset-0 opacity-8">
