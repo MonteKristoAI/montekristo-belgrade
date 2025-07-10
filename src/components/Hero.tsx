@@ -33,7 +33,7 @@ export const Hero = () => {
   return (
     <section 
       ref={heroRef}
-      className="min-h-screen flex items-center relative overflow-hidden bg-[#FAF8F4] pt-6"
+      className="min-h-screen flex items-center relative overflow-hidden bg-[#FAF8F4] pt-1"
     >
       {/* Grid background */}
       <div className="absolute inset-0 opacity-8">
