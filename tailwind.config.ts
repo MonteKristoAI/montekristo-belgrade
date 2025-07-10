@@ -65,7 +65,12 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// MonteKristo Brand Colors
+				'montekristo-dark': 'hsl(var(--montekristo-dark))',
+				'montekristo-darker': 'hsl(var(--montekristo-darker))',
+				'montekristo-coral': 'hsl(var(--montekristo-coral))',
+				'montekristo-text-muted': 'hsl(var(--montekristo-text-muted))',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
