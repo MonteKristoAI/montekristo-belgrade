@@ -49,7 +49,7 @@ export const Hero = () => {
       <div className="container mx-auto px-4 max-w-7xl relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left: Copy */}
-          <div className={`space-y-4 text-center lg:text-left transition-all duration-800 ease-out ${
+          <div className={`space-y-8 text-center lg:text-left transition-all duration-800 ease-out ${
             isVisible 
               ? 'opacity-100 translate-x-0 translate-y-0' 
               : 'opacity-0 -translate-x-16 translate-y-4'
