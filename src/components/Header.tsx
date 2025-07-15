@@ -38,6 +38,8 @@ const Header = () => {
       setTimeout(() => scrollToSection(item.href), 100);
     } else {
       navigate(item.href);
+      // Ensure we scroll to top for page navigation
+      setTimeout(() => window.scrollTo(0, 0), 0);
     }
     setIsMobileMenuOpen(false);
   };
@@ -55,8 +57,8 @@ const Header = () => {
   return (
     <>
       <header className={cn(
-        "bg-white/95 sticky top-0 z-[999] py-3 border-b border-[#0d1b34]/5 backdrop-blur-[10px] transition-all duration-[400ms] ease-out",
-        isScrolled && "bg-white/98 shadow-sm"
+        "bg-white sticky top-0 z-[999] py-3 border-b border-[#0d1b34]/5 transition-all duration-[400ms] ease-out",
+        isScrolled && "shadow-sm"
       )}>
         <div className="max-w-[1440px] mx-auto px-[clamp(1rem,4vw,3rem)] flex items-center justify-between gap-8">
           
