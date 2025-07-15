@@ -1,10 +1,12 @@
 
 import { Button } from "@/components/ui/button";
 import { useEffect, useRef, useState } from "react";
+import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 
 export const Hero = () => {
   const heroRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const { scrollToSection } = useSmoothScroll();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -64,20 +66,13 @@ export const Hero = () => {
               <em className="text-[#FF5C5C]">your</em> SaaS stack.
             </h3>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="flex justify-center lg:justify-start">
               <Button 
                 size="lg" 
                 className="bg-[#041122] hover:bg-[#041122]/90 text-white px-8 py-4 text-lg font-medium transition-all duration-150 hover:scale-105"
-                data-event="cta-click"
+                onClick={() => scrollToSection('contact')}
               >
                 Book AI Strategy Session
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="border-[#041122] text-[#041122] hover:bg-[#041122]/5 px-8 py-4 text-lg font-medium transition-all duration-150"
-              >
-                Browse Agents
               </Button>
             </div>
           </div>
@@ -94,7 +89,8 @@ export const Hero = () => {
                     : 'opacity-0 -translate-x-16 translate-y-4'
                 }`}
                 style={{
-                  transitionDelay: isVisible ? '0.2s' : '0s'
+                  transitionDelay: isVisible ? '0.2s' : '0s',
+                  transform: isVisible ? 'translateX(10px) scale(1.15)' : 'translateX(-16px) translateY(16px)'
                 }}
               />
             </div>

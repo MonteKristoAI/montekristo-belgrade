@@ -54,6 +54,15 @@ const Header = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const handleLogoClick = () => {
+    if (location.pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      navigate('/');
+    }
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <>
       <header className={cn(
@@ -63,7 +72,7 @@ const Header = () => {
         <div className="max-w-[1440px] mx-auto px-[clamp(1rem,4vw,3rem)] flex items-center justify-between gap-8">
           
           {/* Logo */}
-          <Link to="/" className="flex items-center text-[#0d1b34] no-underline font-serif font-bold text-2xl tracking-[0.02em]" aria-label="Montekristo Home">
+          <button onClick={handleLogoClick} className="flex items-center text-[#0d1b34] no-underline font-serif font-bold text-2xl tracking-[0.02em] bg-transparent border-none cursor-pointer" aria-label="Montekristo Home">
             <svg 
               className="h-11 mr-[0.85rem] text-[#ff5b5b]" 
               viewBox="0 0 300 200" 
@@ -94,7 +103,7 @@ const Header = () => {
               </g>
             </svg>
             <span className="transition-opacity duration-300 ease-out">MONTEKRISTO</span>
-          </Link>
+          </button>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:block" aria-label="Main navigation">
