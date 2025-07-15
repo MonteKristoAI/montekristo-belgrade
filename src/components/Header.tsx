@@ -1,13 +1,16 @@
 
 import { cn } from '@/lib/utils';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Header = () => {
+  const navigate = useNavigate();
+  
   const navigationItems = [
-    { name: 'Use Cases', href: '#use-cases' },
-    { name: 'AI Agents', href: '#agents' },
-    { name: 'Protocol', href: '#protocol' },
-    { name: 'Blog', href: '#blog' },
-    { name: 'Resources', href: '#resources' }
+    { name: 'Use Cases', href: '/use-cases' },
+    { name: 'AI Agents', href: '/agents' },
+    { name: 'Protocol', href: '/protocol' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'Resources', href: '/resources' }
   ];
 
   return (
@@ -15,7 +18,7 @@ const Header = () => {
       <div className="max-w-[1440px] mx-auto px-[clamp(1rem,4vw,3rem)] flex items-center justify-between gap-8">
         
         {/* Logo */}
-        <a href="/" className="flex items-center text-[#0d1b34] no-underline font-serif font-bold text-2xl tracking-[0.02em]" aria-label="Montekristo Home">
+        <Link to="/" className="flex items-center text-[#0d1b34] no-underline font-serif font-bold text-2xl tracking-[0.02em]" aria-label="Montekristo Home">
           <svg 
             className="h-11 mr-[0.85rem] text-[#ff5b5b]" 
             viewBox="0 0 300 200" 
@@ -46,15 +49,15 @@ const Header = () => {
             </g>
           </svg>
           <span className="transition-opacity duration-300 ease-out">MONTEKRISTO</span>
-        </a>
+        </Link>
 
         {/* Navigation */}
         <nav className="hidden lg:block" aria-label="Main navigation">
           <ul className="flex items-center gap-[3.2rem] m-0 p-0 list-none">
             {navigationItems.map((item) => (
               <li key={item.name}>
-                <a
-                  href={item.href}
+                <Link
+                  to={item.href}
                   className={cn(
                     "text-[#0d1b34] no-underline font-medium text-[1.075rem] relative transition-colors duration-300 ease-out",
                     "hover:text-[#ff5b5b]",
@@ -64,7 +67,7 @@ const Header = () => {
                   )}
                 >
                   {item.name}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -72,27 +75,27 @@ const Header = () => {
 
         {/* CTA Button */}
         <div className="hidden lg:block">
-          <a
-            href="#strategy"
+          <button
+            onClick={() => navigate('/book')}
             className={cn(
-              "bg-[#ff5b5b] text-white py-[0.65rem] px-[1.65rem] font-semibold text-base rounded-full no-underline",
+              "bg-[#ff5b5b] text-white py-[0.65rem] px-[1.65rem] font-semibold text-base rounded-full",
               "shadow-[0_6px_24px_rgba(255,91,91,0.25)] transition-all duration-300 ease-out",
               "hover:bg-[#e94e4e] hover:-translate-y-[1px]"
             )}
           >
             Book AI Strategy
-          </a>
+          </button>
         </div>
 
         {/* Mobile Layout */}
         <div className="lg:hidden flex flex-col items-stretch gap-6 w-full">
           <div className="w-full">
-            <a
-              href="#strategy"
-              className="bg-[#ff5b5b] text-white py-[0.65rem] px-[1.65rem] font-semibold text-base rounded-full no-underline block text-center w-full hover:bg-[#e94e4e] transition-colors duration-300"
+            <button
+              onClick={() => navigate('/book')}
+              className="bg-[#ff5b5b] text-white py-[0.65rem] px-[1.65rem] font-semibold text-base rounded-full block text-center w-full hover:bg-[#e94e4e] transition-colors duration-300"
             >
               Book AI Strategy
-            </a>
+            </button>
           </div>
         </div>
       </div>
