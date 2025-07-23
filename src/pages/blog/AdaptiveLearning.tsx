@@ -3,8 +3,8 @@ import { Footer } from "@/components/Footer";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import adaptiveLearningHero from "@/assets/adaptive-learning-hero.webp";
-import adaptiveLearningComparison from "@/assets/adaptive-learning-comparison.webp";
+const heroImageUrl = "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1920&q=80";
+const comparisonImageUrl = "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80";
 
 const AdaptiveLearning = () => {
   useEffect(() => {
@@ -36,8 +36,8 @@ const AdaptiveLearning = () => {
           {/* Hero Image */}
           <div className="mb-16">
             <img 
-              src={adaptiveLearningHero}
-              alt="AI‑powered adaptive learning transforming training into a growth engine"
+              src={heroImageUrl}
+              alt="White robot near brown wall representing AI technology in adaptive learning"
               className="w-full rounded-lg shadow-lg"
             />
             <figcaption className="text-center text-sm text-[#1D1F28]/60 mt-4">
@@ -131,8 +131,8 @@ const AdaptiveLearning = () => {
             {/* Comparison Image */}
             <div className="my-16">
               <img 
-                src={adaptiveLearningComparison}
-                alt="Infographic comparing checkbox training versus adaptive learning"
+                src={comparisonImageUrl}
+                alt="Macro photography of black circuit board representing the technical infrastructure behind AI-powered learning systems"
                 className="w-full rounded-lg shadow-lg"
               />
               <figcaption className="text-center text-sm text-[#1D1F28]/60 mt-4">
