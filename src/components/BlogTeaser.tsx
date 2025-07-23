@@ -6,15 +6,17 @@ import { useNavigate } from "react-router-dom";
 const blogPosts = [
   {
     title: "From Checkboxes to Growth Engines: How AI‑Powered Adaptive Learning Supercharges SaaS Teams",
-    excerpt: "Ditch static training decks—see how AI‑powered adaptive learning turns L&D into a revenue growth engine for SaaS companies."
+    excerpt: "Ditch static training decks—see how AI‑powered adaptive learning turns L&D into a revenue growth engine for SaaS companies.",
+    slug: "from-checkboxes-to-growth-engines"
+  },
+  {
+    title: "Workflow‑First AI Automation: How Founder‑Led SaaS Teams Can Scale Without the Busywork",
+    excerpt: "Map workflows before you add bots—unlock AI automation that drives SaaS growth without head‑count sprawl.",
+    slug: "workflow-first-ai-automation"
   },
   {
     title: "The Complete Guide to AI-Powered Sales Workflows",
     excerpt: "Transform your sales process with intelligent automation"
-  },
-  {
-    title: "ROI Calculator: Measuring AI Agent Performance",
-    excerpt: "Track and optimize your AI investment returns"
   }
 ];
 
@@ -34,14 +36,20 @@ export const BlogTeaser = () => {
           {blogPosts.map((post, index) => (
             <Card 
               key={index} 
-              className={`hover:shadow-xl transition-all duration-300 border-0 shadow-lg ${index === 0 ? 'cursor-pointer' : ''}`}
-              onClick={index === 0 ? () => navigate('/blog/from-checkboxes-to-growth-engines') : undefined}
+              className={`hover:shadow-xl transition-all duration-300 border-0 shadow-lg ${index < 2 ? 'cursor-pointer' : ''}`}
+              onClick={post.slug ? () => navigate(`/blog/${post.slug}`) : undefined}
             >
               <CardContent className="p-8">
                 {index === 0 ? (
                   <img 
                     src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80"
                     alt="White robot representing AI-powered adaptive learning"
+                    className="w-full h-48 object-cover rounded-lg mb-6"
+                  />
+                ) : index === 1 ? (
+                  <img 
+                    src="https://images.unsplash.com/photo-1500673922987-e212871f6ac1?auto=format&fit=crop&w=800&q=80"
+                    alt="Colorful lights representing AI workflow automation"
                     className="w-full h-48 object-cover rounded-lg mb-6"
                   />
                 ) : (

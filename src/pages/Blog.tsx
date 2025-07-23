@@ -41,17 +41,21 @@ const Blog = () => {
               </div>
             </article>
             
-            <article className="border border-gray-200 rounded-lg overflow-hidden">
-              <div className="h-48 bg-gradient-to-br from-green-500 to-teal-600"></div>
+            <article className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer" onClick={() => window.location.href = '/blog/workflow-first-ai-automation'}>
+              <img 
+                src="https://images.unsplash.com/photo-1500673922987-e212871f6ac1?auto=format&fit=crop&w=800&q=80"
+                alt="Colorful lights representing AI workflow automation"
+                className="w-full h-48 object-cover"
+              />
               <div className="p-6">
                 <h2 className="text-xl font-bold text-[#041122] mb-3">
-                  ROI Measurement for AI Agent Deployments
+                  Workflow‑First AI Automation: How Founder‑Led SaaS Teams Can Scale Without the Busywork
                 </h2>
                 <p className="text-[#1D1F28]/70 mb-4">
-                  Learn how to effectively measure and optimize the return on investment from your AI automation initiatives.
+                  Map workflows before you add bots—unlock AI automation that drives SaaS growth without head‑count sprawl.
                 </p>
                 <div className="text-sm text-[#1D1F28]/50">
-                  December 10, 2024
+                  July 23, 2025 • ≈ 10 min read
                 </div>
               </div>
             </article>
