@@ -3,13 +3,25 @@ import { Footer } from "@/components/Footer";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { useNavigate } from "react-router-dom";
+import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 const heroImageUrl = "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1920&q=80";
 const comparisonImageUrl = "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80";
 
 const AdaptiveLearning = () => {
+  const navigate = useNavigate();
+  const { scrollToSection } = useSmoothScroll();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const handleGetStarted = () => {
+    navigate('/');
+    setTimeout(() => {
+      scrollToSection('contact');
+    }, 100);
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -224,7 +236,7 @@ const AdaptiveLearning = () => {
               <p className="text-[#1D1F28]/70 mb-6">
                 Discover how AI-powered adaptive learning can supercharge your SaaS team's performance.
               </p>
-              <Button size="lg" className="bg-[#8B5CF6] hover:bg-[#8B5CF6]/90 text-white">
+              <Button size="lg" className="bg-[#8B5CF6] hover:bg-[#8B5CF6]/90 text-white" onClick={handleGetStarted}>
                 Get Started Today
               </Button>
             </div>

@@ -23,7 +23,11 @@ const Blog = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <article className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer" onClick={() => window.location.href = '/blog/from-checkboxes-to-growth-engines'}>
-              <div className="h-48 bg-gradient-to-br from-[#8B5CF6] to-[#0EA5E9] rounded-t-lg"></div>
+              <img 
+                src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80"
+                alt="White robot representing AI-powered adaptive learning"
+                className="w-full h-48 object-cover"
+              />
               <div className="p-6">
                 <h2 className="text-xl font-bold text-[#041122] mb-3">
                   From Checkboxes to Growth Engines: How AI‑Powered Adaptive Learning Supercharges SaaS Teams

@@ -1,6 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
 
 const blogPosts = [
   {
@@ -18,6 +19,8 @@ const blogPosts = [
 ];
 
 export const BlogTeaser = () => {
+  const navigate = useNavigate();
+
   return (
     <section id="blog" className="py-24">
       <div className="container mx-auto px-4 max-w-7xl">
@@ -29,7 +32,11 @@ export const BlogTeaser = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {blogPosts.map((post, index) => (
-            <Card key={index} className="hover:shadow-xl transition-all duration-300 border-0 shadow-lg">
+            <Card 
+              key={index} 
+              className={`hover:shadow-xl transition-all duration-300 border-0 shadow-lg ${index === 0 ? 'cursor-pointer' : ''}`}
+              onClick={index === 0 ? () => navigate('/blog/from-checkboxes-to-growth-engines') : undefined}
+            >
               <CardContent className="p-8">
                 {index === 0 ? (
                   <img 
