@@ -4,8 +4,8 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const blogPosts = [
   {
-    title: "How AI Agents Beat Traditional Automation by 400%",
-    excerpt: "Deep dive into precision AI vs generic automation tools"
+    title: "From Checkboxes to Growth Engines: How AI‑Powered Adaptive Learning Supercharges SaaS Teams",
+    excerpt: "Ditch static training decks—see how AI‑powered adaptive learning turns L&D into a revenue growth engine for SaaS companies."
   },
   {
     title: "The Complete Guide to AI-Powered Sales Workflows",
@@ -44,7 +44,7 @@ export const BlogTeaser = () => {
         </div>
         
         <div className="text-center">
-          <Button variant="outline" size="lg" className="border-[#041122] text-[#041122] hover:bg-[#041122]/5">
+          <Button variant="outline" size="lg" className="border-[#041122] text-[#041122] hover:bg-[#041122]/5" onClick={() => window.location.href = '/blog'}>
             View All Articles
           </Button>
         </div>

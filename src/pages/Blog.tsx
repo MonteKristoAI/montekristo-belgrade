@@ -22,17 +22,17 @@ const Blog = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <article className="border border-gray-200 rounded-lg overflow-hidden">
-              <div className="h-48 bg-gradient-to-br from-blue-500 to-purple-600"></div>
+            <article className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer" onClick={() => window.location.href = '/blog/from-checkboxes-to-growth-engines'}>
+              <div className="h-48 bg-gradient-to-br from-[#8B5CF6] to-[#0EA5E9] rounded-t-lg"></div>
               <div className="p-6">
                 <h2 className="text-xl font-bold text-[#041122] mb-3">
-                  The Future of AI in Business Operations
+                  From Checkboxes to Growth Engines: How AI‑Powered Adaptive Learning Supercharges SaaS Teams
                 </h2>
                 <p className="text-[#1D1F28]/70 mb-4">
-                  Exploring how artificial intelligence is reshaping traditional business processes and creating new opportunities for growth.
+                  Ditch static training decks—see how AI‑powered adaptive learning turns L&D into a revenue growth engine for SaaS companies.
                 </p>
                 <div className="text-sm text-[#1D1F28]/50">
-                  December 15, 2024
+                  July 23, 2025 • ≈ 10 min read
                 </div>
               </div>
             </article>
