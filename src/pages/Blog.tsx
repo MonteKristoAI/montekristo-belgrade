@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { useEffect } from "react";
+import workflowHero from "@/assets/workflow-hero.jpg";
 
 const Blog = () => {
   useEffect(() => {
@@ -43,7 +44,7 @@ const Blog = () => {
             
             <article className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer" onClick={() => window.location.href = '/blog/workflow-first-ai-automation'}>
               <img 
-                src="/src/assets/workflow-hero.jpg"
+                src={workflowHero}
                 alt="Colorful abstract representation of AI automation workflows"
                 className="w-full h-48 object-cover"
               />

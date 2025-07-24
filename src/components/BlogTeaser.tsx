@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
+import workflowHero from "@/assets/workflow-hero.jpg";
 
 const blogPosts = [
   {
@@ -48,7 +49,7 @@ export const BlogTeaser = () => {
                   />
                 ) : index === 1 ? (
                   <img 
-                    src="/src/assets/workflow-hero.jpg"
+                    src={workflowHero}
                     alt="Colorful abstract representation of AI automation workflows"
                     className="w-full h-48 object-cover rounded-lg mb-6"
                   />
