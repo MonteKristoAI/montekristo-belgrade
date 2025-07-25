@@ -3,13 +3,14 @@ import { Footer } from "@/components/Footer";
 import { useEffect } from "react";
 import workflowHero from "@/assets/workflow-hero.jpg";
 import aiAgentsHero from "@/assets/ai-agents-hero.png";
+import adaptiveLearningHero from "@/assets/adaptive-learning-hero.webp";
 
 const blogPosts = [
   {
     title: "From Checkboxes to Growth Engines: How AI‑Powered Adaptive Learning Supercharges SaaS Teams",
     excerpt: "Ditch static training decks—see how AI‑powered adaptive learning turns L&D into a revenue growth engine for SaaS companies.",
     slug: "from-checkboxes-to-growth-engines",
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80",
+    image: adaptiveLearningHero,
     date: "December 15, 2024",
     readTime: "≈ 8 min"
   },
