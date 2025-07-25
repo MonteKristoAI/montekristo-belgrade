@@ -2,26 +2,8 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
-import workflowHero from "@/assets/workflow-hero.jpg";
-import aiAgentsHero from "@/assets/ai-agents-hero.png";
-
-const blogPosts = [
-  {
-    title: "From Checkboxes to Growth Engines: How AI‑Powered Adaptive Learning Supercharges SaaS Teams",
-    excerpt: "Ditch static training decks—see how AI‑powered adaptive learning turns L&D into a revenue growth engine for SaaS companies.",
-    slug: "from-checkboxes-to-growth-engines"
-  },
-  {
-    title: "Workflow‑First AI Automation: How Founder‑Led SaaS Teams Can Scale Without the Busywork",
-    excerpt: "Map workflows before you add bots—unlock AI automation that drives SaaS growth without head‑count sprawl.",
-    slug: "workflow-first-ai-automation"
-  },
-  {
-    title: "AI Agents Without the Hype: A Practical Playbook for 2025 Growth",
-    excerpt: "Cut through the 2025 AI‑agent hype—see what autonomous agents can and can't do for real‑world growth.",
-    slug: "ai-agents-practical-playbook"
-  }
-];
+import { SupabaseImage } from "@/components/ui/supabase-image";
+import { blogPosts } from "@/data/blogPosts";
 
 export const BlogTeaser = () => {
   const navigate = useNavigate();
@@ -38,30 +20,17 @@ export const BlogTeaser = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {blogPosts.map((post, index) => (
             <Card 
-              key={index} 
+              key={post.id} 
               className="hover:shadow-xl transition-all duration-300 border-0 shadow-lg cursor-pointer"
               onClick={() => navigate(`/blog/${post.slug}`)}
             >
               <CardContent className="p-8">
-                {index === 0 ? (
-                  <img 
-                    src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80"
-                    alt="White robot representing AI-powered adaptive learning"
-                    className="w-full h-48 object-cover rounded-lg mb-6"
-                  />
-                ) : index === 1 ? (
-                  <img 
-                    src={workflowHero}
-                    alt="Colorful abstract representation of AI automation workflows"
-                    className="w-full h-48 object-cover rounded-lg mb-6"
-                  />
-                ) : (
-                  <img 
-                    src={aiAgentsHero}
-                    alt="Colorful illustration of diverse professionals collaborating with AI agents"
-                    className="w-full h-48 object-cover rounded-lg mb-6"
-                  />
-                )}
+                <SupabaseImage 
+                  assetId={post.hero_asset_id}
+                  alt={`${post.title} hero image`}
+                  className="w-full h-48 object-cover rounded-lg mb-6"
+                  fallbackSrc="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80"
+                />
                 <h3 className="text-xl font-bold text-[#041122] mb-4 leading-tight">
                   {post.title}
                 </h3>
