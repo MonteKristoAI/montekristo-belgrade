@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import aiAgentsHero from "@/assets/ai-agents-hero.png";
-import aiAgentsLayers from "@/assets/ai-agents-layers.png";
+
 
 const AIAgentsPracticalPlaybook = () => {
   const navigate = useNavigate();
@@ -90,16 +90,6 @@ const AIAgentsPracticalPlaybook = () => {
             {/* Three Core Layers */}
             <h3 className="text-2xl font-semibold text-[#041122] mb-4">1.1 The Three Core Layers</h3>
             
-            <div className="mb-8">
-              <img 
-                src={aiAgentsLayers}
-                alt="Conceptual diagram showing the three core layers of AI agents: perception, decision, and action"
-                className="w-full rounded-lg shadow-lg"
-              />
-              <figcaption className="text-center text-sm text-gray-600 mt-4 italic">
-                Visual representation of the three-layer AI agent architecture that powers autonomous decision-making.
-              </figcaption>
-            </div>
             
             <ol className="list-decimal list-inside space-y-2 text-lg text-gray-700 mb-8">
               <li><strong>Perception</strong> – vector search, document embeddings, or API responses.</li>
