@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useNavigate } from "react-router-dom";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
+import { SEOHead } from "@/components/SEOHead";
 const heroImageUrl = "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1920&q=80";
 const comparisonImageUrl = "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80";
 
@@ -23,8 +24,45 @@ const AdaptiveLearning = () => {
     }, 100);
   };
 
+  // Article Schema
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "From Checkboxes to Growth Engines: How AI‑Powered Adaptive Learning Supercharges SaaS Teams",
+    "description": "Ditch static training decks—see how AI‑powered adaptive learning turns L&D into a revenue growth engine for SaaS companies.",
+    "image": heroImageUrl,
+    "author": {
+      "@type": "Organization",
+      "name": "MonteKristo AI"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "MonteKristo AI",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://montekristoai.com/logo/favicon-512.png"
+      }
+    },
+    "datePublished": "2024-12-15",
+    "dateModified": "2024-12-15",
+    "url": "https://montekristoai.com/blog/from-checkboxes-to-growth-engines"
+  };
+
   return (
     <div className="min-h-screen bg-white">
+      <SEOHead
+        title="From Checkboxes to Growth Engines: How AI-Powered Adaptive Learning Supercharges SaaS Teams | MonteKristo AI"
+        description="Ditch static training decks—see how AI-powered adaptive learning turns L&D into a revenue growth engine for SaaS companies."
+        canonical="/blog/from-checkboxes-to-growth-engines"
+        ogImage={heroImageUrl}
+        ogType="article"
+        article={{
+          author: "MonteKristo AI",
+          publishedTime: "2024-12-15T00:00:00Z",
+          modifiedTime: "2024-12-15T00:00:00Z"
+        }}
+        schema={[articleSchema]}
+      />
       <Header />
       <main className="py-24">
         <div className="container mx-auto px-4 max-w-4xl">

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useNavigate } from "react-router-dom";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
+import { SEOHead } from "@/components/SEOHead";
 
 import workflowHero from "@/assets/workflow-hero.jpg";
 const workflowImageUrl = "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&w=1920&q=80";
@@ -24,8 +25,45 @@ const WorkflowFirstAIAutomation = () => {
     }, 100);
   };
 
+  // Article Schema
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Workflow‑First AI Automation: How Founder‑Led SaaS Teams Can Scale Without the Busywork",
+    "description": "Map workflows before you add bots—unlock AI automation that drives SaaS growth without head‑count sprawl.",
+    "image": workflowImageUrl,
+    "author": {
+      "@type": "Organization",
+      "name": "MonteKristo AI"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "MonteKristo AI",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://montekristoai.com/logo/favicon-512.png"
+      }
+    },
+    "datePublished": "2024-12-10",
+    "dateModified": "2024-12-10",
+    "url": "https://montekristoai.com/blog/workflow-first-ai-automation"
+  };
+
   return (
     <div className="min-h-screen bg-white">
+      <SEOHead
+        title="Workflow-First AI Automation: How Founder-Led SaaS Teams Can Scale Without the Busywork | MonteKristo AI"
+        description="Map workflows before you add bots—unlock AI automation that drives SaaS growth without head‑count sprawl."
+        canonical="/blog/workflow-first-ai-automation"
+        ogImage={workflowImageUrl}
+        ogType="article"
+        article={{
+          author: "MonteKristo AI",
+          publishedTime: "2024-12-10T00:00:00Z",
+          modifiedTime: "2024-12-10T00:00:00Z"
+        }}
+        schema={[articleSchema]}
+      />
       <Header />
       
       <main className="pt-20">

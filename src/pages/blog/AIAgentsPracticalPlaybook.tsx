@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import aiAgentsHero from "@/assets/ai-agents-hero.png";
+import { SEOHead } from "@/components/SEOHead";
 
 
 const AIAgentsPracticalPlaybook = () => {
@@ -23,8 +24,45 @@ const AIAgentsPracticalPlaybook = () => {
     }, 100);
   };
 
+  // Article Schema
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "AI Agents Without the Hype: A Practical Playbook for 2025 Growth",
+    "description": "Cut through the 2025 AI‑agent hype—see what autonomous agents can and can't do for real‑world SaaS growth.",
+    "image": aiAgentsHero,
+    "author": {
+      "@type": "Organization",
+      "name": "MonteKristo AI"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "MonteKristo AI",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://montekristoai.com/logo/favicon-512.png"
+      }
+    },
+    "datePublished": "2025-07-24",
+    "dateModified": "2025-07-24",
+    "url": "https://montekristoai.com/blog/ai-agents-practical-playbook"
+  };
+
   return (
     <div className="min-h-screen bg-white">
+      <SEOHead
+        title="AI Agents Without the Hype: A Practical Playbook for 2025 Growth | MonteKristo AI"
+        description="Cut through the 2025 AI‑agent hype—see what autonomous agents can and can't do for real‑world SaaS growth."
+        canonical="/blog/ai-agents-practical-playbook"
+        ogImage={aiAgentsHero}
+        ogType="article"
+        article={{
+          author: "MonteKristo AI",
+          publishedTime: "2025-07-24T00:00:00Z",
+          modifiedTime: "2025-07-24T00:00:00Z"
+        }}
+        schema={[articleSchema]}
+      />
       <Header />
       
       <main className="pt-20">

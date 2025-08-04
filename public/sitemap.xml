@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://montekristoai.com/</loc>
+    <priority>1.0</priority>
+    <changefreq>weekly</changefreq>
+    <lastmod>2025-08-04</lastmod>
+  </url>
+  <url>
+    <loc>https://montekristoai.com/blog</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+    <lastmod>2025-08-04</lastmod>
+  </url>
+  <url>
+    <loc>https://montekristoai.com/blog/from-checkboxes-to-growth-engines</loc>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <lastmod>2024-12-15</lastmod>
+  </url>
+  <url>
+    <loc>https://montekristoai.com/blog/workflow-first-ai-automation</loc>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <lastmod>2024-12-10</lastmod>
+  </url>
+  <url>
+    <loc>https://montekristoai.com/blog/ai-agents-practical-playbook</loc>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+    <lastmod>2025-07-24</lastmod>
+  </url>
+</urlset>

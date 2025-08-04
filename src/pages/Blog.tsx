@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { useEffect } from "react";
+import { SEOHead } from "@/components/SEOHead";
 import workflowHero from "@/assets/workflow-hero.jpg";
 import aiAgentsHero from "@/assets/ai-agents-hero.png";
 
@@ -38,6 +39,11 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEOHead
+        title="SaaS Growth & AI Insights Blog | MonteKristo AI"
+        description="Explore the MonteKristo AI blog for insights on AI automation, SaaS growth strategies, and practical tips for AI-driven business transformation."
+        canonical="/blog"
+      />
       <Header />
       <main className="py-24">
         <div className="container mx-auto px-4 max-w-7xl">
