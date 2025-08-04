@@ -3,14 +3,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
 import workflowHero from "@/assets/workflow-hero.jpg";
 import aiAgentsHero from "@/assets/ai-agents-hero.png";
-import adaptiveLearningHero from "@/assets/adaptive-learning-hero.webp";
 
 const blogPosts = [
   {
     title: "From Checkboxes to Growth Engines: How AI‑Powered Adaptive Learning Supercharges SaaS Teams",
     excerpt: "Ditch static training decks—see how AI‑powered adaptive learning turns L&D into a revenue growth engine for SaaS companies.",
     slug: "from-checkboxes-to-growth-engines",
-    image: adaptiveLearningHero
+    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80"
   },
   {
     title: "Workflow‑First AI Automation: How Founder‑Led SaaS Teams Can Scale Without the Busywork",
