@@ -153,6 +153,15 @@ async function createAirtableRecord(data: FormSubmission): Promise<{ success: bo
   
   const url = `https://api.airtable.com/v0/${baseId}/${tableId}`
   
+  // Redact PII from logs - only log sanitized/truncated versions
+  const logSafeData = {
+    name: data.name.substring(0, 3) + '***',
+    email: data.email.split('@')[0].substring(0, 2) + '***@' + data.email.split('@')[1],
+    company: data.company.substring(0, 5) + '***',
+    bottleneck: data.bottleneck
+  }
+  console.log('Creating Airtable record for:', logSafeData)
+  
   const payload = {
     records: [{
       fields: {
@@ -198,7 +207,7 @@ async function createAirtableRecord(data: FormSubmission): Promise<{ success: bo
       const result = await response.json()
       const recordId = result.records?.[0]?.id
       
-      console.log('Successfully created Airtable record:', recordId)
+      console.log('Successfully created Airtable record with ID ending in:', recordId?.slice(-4))
       return { success: true, recordId }
       
     } catch (error) {
@@ -215,6 +224,17 @@ async function triggerN8NWebhook(data: FormSubmission, airtableRecordId: string)
   if (!webhookUrl) return
   
   try {
+    // Redact PII for webhook payload logging
+    const logSafePayload = {
+      name: data.name.substring(0, 3) + '***',
+      email: data.email.split('@')[0].substring(0, 2) + '***@' + data.email.split('@')[1],
+      company: data.company.substring(0, 5) + '***',
+      bottleneck: data.bottleneck,
+      airtableRecordId: airtableRecordId.slice(-4),
+      timestamp: new Date().toISOString()
+    }
+    console.log('Triggering N8N webhook with:', logSafePayload)
+    
     const payload = {
       ...data,
       airtableRecordId,
@@ -265,11 +285,13 @@ serve(async (req) => {
   const timestamp = new Date().toISOString()
   const method = req.method
   const ip = getClientIP(req)
+  const origin = req.headers.get('origin')
   
-  console.log(`${timestamp} - ${method} request from ${ip}`)
+  // Redact IP for privacy (log only last octet for IPv4)
+  const logSafeIP = ip.includes('.') ? ip.split('.').slice(0, 3).join('.') + '.***' : ip.substring(0, 8) + '***'
+  console.log(`${timestamp} - ${method} request from ${logSafeIP}, origin: ${origin}`)
 
   // Set CORS origin based on request origin
-  const origin = req.headers.get('origin')
   if (origin && ALLOWED_ORIGINS.some(allowed => 
     typeof allowed === 'string' ? allowed === origin : allowed.test(origin)
   )) {

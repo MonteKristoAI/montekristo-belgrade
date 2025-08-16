@@ -10,13 +10,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { 
-  sanitizeInput, 
   validateSecureEmail, 
-  checkRateLimit, 
-  initializeCSRF, 
-  getCSRFToken 
+  checkRateLimit
 } from "@/utils/security";
 
 // Secure form validation schema

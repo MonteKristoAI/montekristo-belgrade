@@ -1,40 +1,6 @@
 /**
- * Security utilities for CSRF protection and input sanitization
+ * Security utilities for input validation and rate limiting
  */
-
-// Generate CSRF token
-export const generateCSRFToken = (): string => {
-  const array = new Uint8Array(32);
-  crypto.getRandomValues(array);
-  return Array.from(array, byte => byte.toString(16).padStart(2, '0')).join('');
-};
-
-// Store CSRF token securely
-export const setCSRFToken = (token: string): void => {
-  sessionStorage.setItem('csrf_token', token);
-};
-
-// Retrieve CSRF token
-export const getCSRFToken = (): string | null => {
-  return sessionStorage.getItem('csrf_token');
-};
-
-// Validate CSRF token
-export const validateCSRFToken = (token: string): boolean => {
-  const storedToken = getCSRFToken();
-  return storedToken === token && token.length === 64;
-};
-
-// Sanitize input to prevent XSS
-export const sanitizeInput = (input: string): string => {
-  return input
-    .replace(/[<>]/g, '') // Remove HTML brackets
-    .replace(/[\"']/g, '') // Remove quotes
-    .replace(/javascript:/gi, '') // Remove javascript: protocol
-    .replace(/on\w+\s*=/gi, '') // Remove event handlers
-    .trim()
-    .substring(0, 1000); // Limit length
-};
 
 // Validate email format with additional security checks
 export const validateSecureEmail = (email: string): boolean => {
@@ -49,7 +15,7 @@ export const validateSecureEmail = (email: string): boolean => {
   return hasValidLength && hasValidFormat && noSuspiciousChars && noScriptTags;
 };
 
-// Rate limiting utility
+// Rate limiting utility (client-side only - server enforces real limits)
 export const checkRateLimit = (key: string, limit: number, windowMs: number): boolean => {
   const now = Date.now();
   const attempts = JSON.parse(localStorage.getItem(`rate_limit_${key}`) || '[]');
@@ -66,12 +32,4 @@ export const checkRateLimit = (key: string, limit: number, windowMs: number): bo
   localStorage.setItem(`rate_limit_${key}`, JSON.stringify(validAttempts));
   
   return true;
-};
-
-// Initialize CSRF token on app start
-export const initializeCSRF = (): void => {
-  if (!getCSRFToken()) {
-    const token = generateCSRFToken();
-    setCSRFToken(token);
-  }
 };

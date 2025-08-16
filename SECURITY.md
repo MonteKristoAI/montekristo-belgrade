@@ -1,114 +1,92 @@
-# Security Implementation Guide
+# Security Features
 
-## 🛡️ Security Features Implemented
+This document outlines the security features implemented in the application, detailing the measures taken to protect against common web vulnerabilities and providing guidance for production deployment.
 
-### 1. Form Security
-- **Input Validation**: Zod schema validation with regex patterns to prevent malicious input
-- **Input Sanitization**: XSS protection through input sanitization
-- **Rate Limiting**: Client-side rate limiting (3 attempts per 5 minutes)
-- **CSRF Protection**: CSRF tokens generated and validated
-- **Email Validation**: Enhanced email validation with security checks
+## Security Features Implemented
 
-### 2. Content Security Policy (CSP)
-```html
-<meta http-equiv="Content-Security-Policy" content="
-  default-src 'self';
-  script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com;
-  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-  font-src 'self' https://fonts.gstatic.com;
-  img-src 'self' data: https: blob:;
-  connect-src 'self' https://www.google-analytics.com https://analytics.google.com;
-  frame-src 'none';
-  object-src 'none';
-  base-uri 'self';
-  form-action 'self';
-  upgrade-insecure-requests;
-">
-```
+### Form Security (Server-Side Primary Defense)
+- **Input Validation**: Comprehensive server-side validation using Zod schemas and regex patterns in Edge Function
+- **Sanitization**: XSS protection through input sanitization before database storage
+- **Rate Limiting**: Per-IP rate limiting (10 requests per minute) with trusted IP detection (Cloudflare, X-Real-IP)
+- **Origin Validation**: CORS and Origin/Referer allowlist checking
+- **Honeypot Field**: Bot detection using hidden form fields
+- **Enhanced Email Validation**: Multi-layer email validation with security checks
+- **PII Protection**: Redacted logging to prevent sensitive data exposure in logs
 
-### 3. Security Headers
-- **X-Content-Type-Options**: `nosniff` - Prevents MIME type sniffing
-- **X-Frame-Options**: `DENY` - Prevents clickjacking attacks
-- **Referrer Policy**: `strict-origin-when-cross-origin` - Controls referrer information
+### Content Security Policy (CSP)
+- **HTTP-Level CSP**: Should be implemented at hosting/CDN level for maximum security
+- **Meta CSP**: Fallback CSP via meta tags (less secure but better than none)
+- **Script Sources**: Restricted to self and trusted domains with hash-based allowing for inline GA script
+- **Connect Sources**: Limited to self, analytics domains, and Supabase endpoints (wildcard subdomain support)
+- **Form Actions**: Restricted to self and Supabase endpoints
 
-**Note**: X-XSS-Protection header has been removed as it's deprecated and can introduce vulnerabilities in legacy browsers.
+### Runtime Security 
+- **Client-Side Validation**: Supplementary validation only - server-side is authoritative
+- **Email Security**: Enhanced email validation with XSS pattern detection
+- **Rate Limiting**: Client-side rate limiting as UX enhancement (server enforces real limits)
 
-**Production Deployment**: These headers are currently set via HTML meta tags for development. In production, configure these headers at the server/CDN level:
-- Content-Security-Policy (with frame-ancestors directive)
-- X-Content-Type-Options: nosniff
-- Referrer-Policy: strict-origin-when-cross-origin
-
-### 4. Runtime Security Monitoring
-- **XSS Detection**: Real-time monitoring for suspicious script injection
-- **DOM Protection**: Periodic checks for malicious DOM modifications
-- **Input Monitoring**: Real-time validation of form inputs
-
-### 5. Secure Utilities
-- CSRF token generation and validation
-- Input sanitization functions
-- Rate limiting utilities
-- Secure email validation
-
-## 🔧 Implementation Details
+## Implementation Details
 
 ### Files Modified/Created:
-1. `src/components/ContactSection.tsx` - Secure form with validation
-2. `src/components/SecurityProvider.tsx` - Runtime security monitoring
-3. `src/utils/security.ts` - Security utility functions
-4. `src/hooks/useSecureForm.ts` - Secure form management hook
-5. `index.html` - CSP headers and security meta tags
-6. `src/App.tsx` - Integration of security provider
+- `supabase/functions/form-submit/index.ts` - Hardened Edge Function with PII-safe logging, trusted IP detection, origin validation
+- `src/components/ContactSection.tsx` - Simplified security integration, removed unused CSRF
+- `src/utils/security.ts` - Cleaned up to essential validation utilities
+- `src/components/SecurityProvider.tsx` - Simplified provider, removed heuristic DOM manipulation
+- `index.html` - Updated CSP with Supabase wildcard support and removed ineffective meta headers
+- `SECURITY.md` - Updated security documentation
 
-### Security Best Practices Followed:
-- ✅ Input validation and sanitization
-- ✅ CSRF protection
-- ✅ Rate limiting
-- ✅ Content Security Policy
-- ✅ Security headers
-- ✅ XSS prevention
-- ✅ Clickjacking protection
-- ✅ MIME type sniffing prevention
-- ✅ Secure external resource loading
+### Security Best Practices:
+- ✅ Server-side input validation and sanitization
+- ✅ XSS prevention via sanitization
+- ✅ Rate limiting with trusted IP detection
+- ✅ Origin/CORS validation
+- ✅ Bot detection (honeypot)
+- ✅ PII-safe logging
+- ✅ Content Security Policy (meta fallback)
 
-## 🚀 Production Recommendations
+## Production Recommendations
 
-### Before Going Live:
-1. **Replace Analytics ID**: Update `G-XXXXXXXXXX` with your actual Google Analytics ID
-2. **Backend Integration**: Connect form to secure Supabase backend
-3. **SSL/TLS**: Ensure HTTPS is properly configured
-4. **Server Headers**: Add security headers at server level for redundancy
+For production deployment, ensure the following additional security measures:
 
-### Monitoring:
-- Monitor CSP violation reports
-- Track rate limiting effectiveness
-- Review form submission patterns
-- Monitor for security incidents
+1. **Server-Level Security Headers**: Configure at hosting/CDN level (most effective):
+   ```
+   Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-[GA-hash]' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; connect-src 'self' https://*.supabase.co https://www.google-analytics.com; frame-ancestors 'none'
+   X-Content-Type-Options: nosniff
+   Strict-Transport-Security: max-age=31536000; includeSubDomains
+   Referrer-Policy: strict-origin-when-cross-origin
+   ```
 
-### Future Enhancements:
-- Add CAPTCHA for additional bot protection
-- Implement honeypot fields
-- Add device fingerprinting
-- Set up security incident logging
+2. **CAPTCHA Integration**: For high-traffic sites, consider adding CAPTCHA to the form endpoint
+3. **WAF Protection**: Use Web Application Firewall for DDoS and bot protection
+4. **Analytics Configuration**: Replace Google Analytics ID placeholder with your actual tracking ID
+5. **Monitoring**: Set up alerts for rate limiting violations and security events
+6. **CORS Hardening**: Update allowed origins in Edge Function for your production domains
 
-## 🔒 Security Checklist
+## Future Enhancements
+- Add CAPTCHA for additional bot protection at high scale
+- Implement device fingerprinting for sophisticated bot detection
+- Set up security incident logging and monitoring
+- Consider implementing additional client-side protections as defense-in-depth
 
-- [x] Input validation implemented
-- [x] XSS protection active
-- [x] CSRF tokens in use
-- [x] Rate limiting configured
-- [x] CSP headers set
-- [x] Security headers configured
-- [x] External resources secured
-- [x] Runtime monitoring active
-- [ ] Production analytics configured
-- [ ] Backend security integration
-- [ ] SSL/TLS certificate installed
-- [ ] Security monitoring dashboard
+## Security Checklist
 
-## 📞 Security Contact
+### ✅ Implemented
+- [x] Server-side input validation and sanitization
+- [x] XSS prevention via sanitization
+- [x] Rate limiting with trusted IP detection
+- [x] Origin/CORS validation
+- [x] Bot detection (honeypot)
+- [x] PII-safe logging
+- [x] Content Security Policy (meta fallback)
 
-For security-related issues or questions, please follow responsible disclosure practices.
+### 🔄 Production Recommendations
+- [ ] Server-level security headers (hosting/CDN)
+- [ ] CAPTCHA integration for high-traffic protection
+- [ ] Web Application Firewall (WAF)
+- [ ] Security incident monitoring/alerting
+- [ ] CSP hash generation for inline scripts
+- [ ] Production domain CORS configuration
 
 ---
 
-*This security implementation provides a robust foundation for a production-ready application. Regular security audits and updates are recommended.*
+*This security implementation prioritizes server-side validation as the primary defense, with client-side measures as supplementary UX enhancements.*
