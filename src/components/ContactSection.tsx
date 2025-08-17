@@ -94,7 +94,7 @@ export const ContactSection = () => {
       
       // Submit to Supabase Edge Function
       const response = await fetch(
-        `https://kulcfydqylhvufevlcra.supabase.co/functions/v1/form-submit`,
+        `https://kulcfydqylhvufevlcra.functions.supabase.co/form-submit`,
         {
           method: 'POST',
           headers: {
