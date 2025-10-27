@@ -125,7 +125,7 @@ export const Footer = () => {
         {/* Payment Security & Bank Branding */}
         <Separator className="bg-gray-700 mb-6" />
         
-        <div className="flex flex-wrap justify-center items-center gap-5 md:gap-8 py-6">
+        <div className="flex flex-nowrap justify-center items-center gap-3 md:gap-5 py-6">
           {paymentLogos.map((logo) => (
             <a
               key={logo.name}
@@ -138,10 +138,10 @@ export const Footer = () => {
               <img
                 src={logo.src}
                 alt={logo.alt}
-                className="h-16 md:h-20 w-auto object-contain"
+                className="h-10 sm:h-12 md:h-14 w-auto object-contain"
                 loading="lazy"
                 width="auto"
-                height="80"
+                height="56"
               />
             </a>
           ))}
