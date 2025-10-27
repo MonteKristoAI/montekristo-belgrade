@@ -35,6 +35,12 @@ export const Footer = () => {
       alt: "OTP Banka"
     },
     {
+      name: "VISA Secure Program",
+      src: "https://hfpvnsbiewudpqbtlvte.supabase.co/storage/v1/object/public/OTP%20Logos/visa-secure_blu_72dpi.png",
+      url: "https://rs.visa.com/pay-with-visa/security-and-assistance/protected-everywhere.html",
+      alt: "VISA Secure program"
+    },
+    {
       name: "Mastercard ID Check",
       src: "https://hfpvnsbiewudpqbtlvte.supabase.co/storage/v1/object/public/OTP%20Logos/mc_idcheck_hrz_rgb_rev.png",
       url: "http://www.mastercard.com/rs/consumer/credit-cards.html",
