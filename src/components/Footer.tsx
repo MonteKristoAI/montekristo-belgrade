@@ -3,6 +3,45 @@ import { Separator } from "@/components/ui/separator";
 import Logo from "./Logo";
 
 export const Footer = () => {
+  const paymentLogos = [
+    {
+      name: "Mastercard",
+      src: "https://hfpvnsbiewudpqbtlvte.supabase.co/storage/v1/object/public/OTP%20Logos/mc_vrt_opt_rev_73_1x.png",
+      url: "http://www.mastercard.com/rs/consumer/credit-cards.html",
+      alt: "Mastercard"
+    },
+    {
+      name: "Maestro",
+      src: "https://hfpvnsbiewudpqbtlvte.supabase.co/storage/v1/object/public/OTP%20Logos/ms_vrt_opt_rev_73_1x.png",
+      url: "http://www.mastercard.com/rs/consumer/credit-cards.html",
+      alt: "Maestro"
+    },
+    {
+      name: "Visa Secure",
+      src: "https://hfpvnsbiewudpqbtlvte.supabase.co/storage/v1/object/public/OTP%20Logos/Visa_Brandmark_White_Transp.png",
+      url: "https://rs.visa.com/pay-with-visa/security-and-assistance/protected-everywhere.html",
+      alt: "Visa Secure"
+    },
+    {
+      name: "DinaCard",
+      src: "https://hfpvnsbiewudpqbtlvte.supabase.co/storage/v1/object/public/OTP%20Logos/DinaCard%20novi%20znak.jpg",
+      url: "https://www.nbs.rs/sr_RS/drugi-nbs-servisi/dina-card/",
+      alt: "DinaCard"
+    },
+    {
+      name: "OTP Banka",
+      src: "https://hfpvnsbiewudpqbtlvte.supabase.co/storage/v1/object/public/OTP%20Logos/OPT%20logo%20za%20dokumenta%20PRINT%20COLOR.jpg",
+      url: "https://www.otpbanka.rs/",
+      alt: "OTP Banka"
+    },
+    {
+      name: "Mastercard ID Check",
+      src: "https://hfpvnsbiewudpqbtlvte.supabase.co/storage/v1/object/public/OTP%20Logos/mc_idcheck_hrz_rgb_rev.png",
+      url: "http://www.mastercard.com/rs/consumer/credit-cards.html",
+      alt: "Mastercard ID Check"
+    }
+  ];
+
   return (
     <footer className="bg-[#081228] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -77,10 +116,35 @@ export const Footer = () => {
         
         <Separator className="bg-gray-700 mb-6" />
         
-        <div className="text-center">
+        <div className="text-center mb-8">
           <p className="text-gray-400 text-sm">
             © 2025 Montekristo AI — All rights reserved.
           </p>
+        </div>
+
+        {/* Payment Security & Bank Branding */}
+        <Separator className="bg-gray-700 mb-6" />
+        
+        <div className="flex flex-wrap justify-center items-center gap-5 md:gap-8 py-6">
+          {paymentLogos.map((logo) => (
+            <a
+              key={logo.name}
+              href={logo.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-opacity duration-200 hover:opacity-80"
+              aria-label={logo.alt}
+            >
+              <img
+                src={logo.src}
+                alt={logo.alt}
+                className="h-16 md:h-20 w-auto object-contain"
+                loading="lazy"
+                width="auto"
+                height="80"
+              />
+            </a>
+          ))}
         </div>
       </div>
     </footer>
