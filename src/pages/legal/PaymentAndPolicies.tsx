@@ -14,7 +14,7 @@ const PaymentAndPolicies = () => {
     "@context": "https://schema.org",
     "@type": "WebPage",
     "name": "Legal & Payment Policies",
-    "description": "Comprehensive legal information for card payments and e-commerce operations in cooperation with OTP Banka Serbia. Privacy policy, refund policy, and consumer rights.",
+    "description": "Comprehensive legal information for card payments and e-commerce operations. Privacy policy, refund policy, and consumer rights.",
     "url": "https://montekristobelgrade.com/legal/payment-and-policies"
   };
 
@@ -43,7 +43,7 @@ const PaymentAndPolicies = () => {
     <div className="min-h-screen bg-background">
       <SEOHead
         title="Legal & Payment Policies | MonteKristo AI"
-        description="Comprehensive legal information for card payments and e-commerce operations in cooperation with OTP Banka Serbia. Privacy policy, refund policy, and consumer rights."
+        description="Comprehensive legal information for card payments and e-commerce operations. Privacy policy, refund policy, and consumer rights."
         canonical="/legal/payment-and-policies"
         schema={[webPageSchema, organizationSchema]}
       />
@@ -56,7 +56,7 @@ const PaymentAndPolicies = () => {
               Legal & Payment Policies
             </h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              This page contains all legally required information for card payments and e-commerce operations in cooperation with OTP Banka Serbia.
+              This page contains all legally required information for card payments and e-commerce operations.
             </p>
           </div>
 
@@ -135,10 +135,10 @@ const PaymentAndPolicies = () => {
             </h2>
             <div className="space-y-4">
               <p className="text-lg text-muted-foreground leading-relaxed">
-                All payments are processed in RSD.
+                All payments are made in the local currency of the Republic of Serbia — Serbian dinar (RSD). Prices shown in other currencies use the National Bank of Serbia middle exchange rate for information only. The amount charged to your card will be expressed in your local currency via conversion applied by the card schemes, which is not known to us at the time of the transaction. As a result, a minor difference may occur between the price shown on our website and the amount on your card statement.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                If you pay with an international card, your bank may convert the amount to your local currency using its exchange rate and internal policies, which may differ from the rate shown on this website.
+                Sva plaćanja biće izvršena u lokalnoj valuti Republike Srbije – dinar (RSD). Za informativni prikaz cena u drugim valutama koristi se srednji kurs Narodne Banke Srbije. Iznos za koji će biti zadužena Vaša platna kartica biće izražen u Vašoj lokalnoj valuti kroz konverziju u istu po kursu koji koriste kartičarske organizacije, a koji nama u trenutku transakcije ne može biti poznat. Kao rezultat ove konverzije postoji mogućnost neznatne razlike od originalne cene navedene na našem sajtu i one koju možete videti na izvodu po računu vaše platne kartice.
               </p>
             </div>
           </section>
@@ -198,10 +198,10 @@ const PaymentAndPolicies = () => {
             </h2>
             <div className="space-y-4">
               <p className="text-lg text-muted-foreground leading-relaxed">
-                When entering card details, confidential information is transmitted via a secure (SSL/TLS) connection directly to OTP Bank's hosted payment page.
+                When entering card details, confidential information is transmitted over a public network in a protected (encrypted) form. At no point are card details accessible to our systems.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Card data is never stored or processed on our servers.
+                Prilikom unošenja podataka o platnoj kartici, poverljive informacija se prenose putem javne mreže u zaštićenoj (kriptovanoj) formi. Niti jednog trenutka podaci o platnoj kartici nisu dostupni našem sistemu.
               </p>
             </div>
           </section>
@@ -240,9 +240,17 @@ const PaymentAndPolicies = () => {
             <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-6 border-b-2 border-border pb-3">
               8. Refunds for Card Payments
             </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Refunds for transactions made with payment cards are processed exclusively to the same card used for the original transaction, via Visa, Mastercard/Maestro, or Dina channels.
-            </p>
+            <div className="space-y-4">
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Refunds for transactions made with payment cards are processed exclusively to the same card used for the original transaction, via Visa, Mastercard/Maestro, or Dina channels.
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                We initiate approved refunds within 5 business days; depending on your card issuer, funds may appear on your statement within 3–14 days.
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Povraćaj pokrećemo u roku od 5 radnih dana od odobrenja zahteva; knjiženje na izvodu zavisi od izdavaoca kartice (3–14 dana).
+              </p>
+            </div>
           </section>
 
           {/* Section 9: VAT Statement */}
@@ -301,7 +309,7 @@ const PaymentAndPolicies = () => {
                 <li><strong className="text-foreground">Mastercard ID Check</strong></li>
               </ul>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                All transactions are processed by OTP Banka Serbia in accordance with PCI DSS standards.
+                Card payments are authenticated via Visa Secure and Mastercard Identity Check and processed in accordance with applicable PCI DSS standards.
               </p>
             </div>
           </section>
@@ -333,6 +341,21 @@ const PaymentAndPolicies = () => {
                 <div className="font-semibold text-foreground">Working hours:</div>
                 <div className="text-lg text-muted-foreground">Monday–Friday, 09:00–17:00 EST</div>
               </div>
+            </div>
+          </section>
+
+          {/* Section 13: Terms of Use - Age Restriction */}
+          <section className="mb-12">
+            <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-6 border-b-2 border-border pb-3">
+              13. Terms of Use
+            </h2>
+            <div className="space-y-4">
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Our services and purchases are intended for individuals 18 years of age or older.
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Kupovina i korišćenje usluge namenjeni su licima starijim od 18 godina.
+              </p>
             </div>
           </section>
 

@@ -3,42 +3,35 @@ import { Separator } from "@/components/ui/separator";
 import Logo from "./Logo";
 
 export const Footer = () => {
-  const paymentLogos = [
+  const acceptanceLogos = [
+    {
+      name: "Visa",
+      src: "https://hfpvnsbiewudpqbtlvte.supabase.co/storage/v1/object/public/OTP%20Logos/Visa_Brandmark_White_Transp.png",
+      alt: "Visa"
+    },
     {
       name: "Mastercard",
       src: "https://hfpvnsbiewudpqbtlvte.supabase.co/storage/v1/object/public/OTP%20Logos/mc_vrt_opt_rev_73_1x.png",
-      url: "http://www.mastercard.com/rs/consumer/credit-cards.html",
       alt: "Mastercard"
     },
     {
       name: "Maestro",
       src: "https://hfpvnsbiewudpqbtlvte.supabase.co/storage/v1/object/public/OTP%20Logos/ms_vrt_opt_rev_73_1x.png",
-      url: "http://www.mastercard.com/rs/consumer/credit-cards.html",
       alt: "Maestro"
-    },
-    {
-      name: "Visa Secure",
-      src: "https://hfpvnsbiewudpqbtlvte.supabase.co/storage/v1/object/public/OTP%20Logos/Visa_Brandmark_White_Transp.png",
-      url: "https://rs.visa.com/pay-with-visa/security-and-assistance/protected-everywhere.html",
-      alt: "Visa Secure"
     },
     {
       name: "DinaCard",
       src: "https://hfpvnsbiewudpqbtlvte.supabase.co/storage/v1/object/public/OTP%20Logos/DinaCard%20novi%20znak.jpg",
-      url: "https://www.nbs.rs/sr_RS/drugi-nbs-servisi/dina-card/",
       alt: "DinaCard"
-    },
+    }
+  ];
+
+  const securityLogos = [
     {
-      name: "OTP Banka",
-      src: "https://hfpvnsbiewudpqbtlvte.supabase.co/storage/v1/object/public/OTP%20Logos/OPT%20logo%20za%20dokumenta%20PRINT%20COLOR.jpg",
-      url: "https://www.otpbanka.rs/",
-      alt: "OTP Banka"
-    },
-    {
-      name: "VISA Secure Program",
+      name: "Visa Secure",
       src: "https://hfpvnsbiewudpqbtlvte.supabase.co/storage/v1/object/public/OTP%20Logos/visa-secure_blu_72dpi.png",
       url: "https://rs.visa.com/pay-with-visa/security-and-assistance/protected-everywhere.html",
-      alt: "VISA Secure program"
+      alt: "Visa Secure Program"
     },
     {
       name: "Mastercard ID Check",
@@ -47,6 +40,13 @@ export const Footer = () => {
       alt: "Mastercard ID Check"
     }
   ];
+
+  const bankLogo = {
+    name: "OTP Banka",
+    src: "https://hfpvnsbiewudpqbtlvte.supabase.co/storage/v1/object/public/OTP%20Logos/OPT%20logo%20za%20dokumenta%20PRINT%20COLOR.jpg",
+    url: "https://www.otpbanka.rs/",
+    alt: "OTP Banka"
+  };
 
   return (
     <footer className="bg-[#081228] text-white">
@@ -137,8 +137,27 @@ export const Footer = () => {
         {/* Payment Security & Bank Branding */}
         <Separator className="bg-gray-700 mb-6" />
         
-        <div className="flex flex-nowrap justify-center items-center gap-3 md:gap-5 py-6">
-          {paymentLogos.map((logo) => (
+        <div className="flex flex-wrap justify-center items-center gap-3 md:gap-5 py-6">
+          {/* Acceptance Card Brands - No Links */}
+          {acceptanceLogos.map((logo) => (
+            <div
+              key={logo.name}
+              className="transition-opacity duration-200"
+              aria-label={logo.alt}
+            >
+              <img
+                src={logo.src}
+                alt={logo.alt}
+                className="h-10 sm:h-12 md:h-14 w-auto object-contain"
+                loading="lazy"
+                width="auto"
+                height="56"
+              />
+            </div>
+          ))}
+          
+          {/* Security Programs - With Links */}
+          {securityLogos.map((logo) => (
             <a
               key={logo.name}
               href={logo.url}
@@ -157,6 +176,24 @@ export const Footer = () => {
               />
             </a>
           ))}
+          
+          {/* Bank Logo - With Link */}
+          <a
+            href={bankLogo.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-opacity duration-200 hover:opacity-80"
+            aria-label={bankLogo.alt}
+          >
+            <img
+              src={bankLogo.src}
+              alt={bankLogo.alt}
+              className="h-10 sm:h-12 md:h-14 w-auto object-contain"
+              loading="lazy"
+              width="auto"
+              height="56"
+            />
+          </a>
         </div>
 
         {/* Legal Payment Notice */}
