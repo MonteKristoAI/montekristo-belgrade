@@ -178,9 +178,13 @@ export const Footer = () => {
             </a>
           ))}
           
-          {/* Bank Logo - No Link */}
-          <div
-            aria-label={bankLogo.alt}
+          {/* Bank Logo - With Link */}
+          <a
+            href={bankLogo.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-opacity duration-200 hover:opacity-80"
+            aria-label="OTP banka – official website"
           >
             <img
               src={bankLogo.src}
@@ -190,7 +194,7 @@ export const Footer = () => {
               width="auto"
               height="56"
             />
-          </div>
+          </a>
         </div>
 
         {/* Legal Payment Notice */}
