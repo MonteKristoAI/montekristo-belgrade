@@ -155,6 +155,24 @@ export const Footer = () => {
             </div>
           ))}
           
+          {/* Bank Logo - With Link */}
+          <a
+            href={bankLogo.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-opacity duration-200 hover:opacity-80"
+            aria-label="OTP banka – official website"
+          >
+            <img
+              src={bankLogo.src}
+              alt={bankLogo.alt}
+              className="h-10 sm:h-12 md:h-14 w-auto object-contain"
+              loading="lazy"
+              width="auto"
+              height="56"
+            />
+          </a>
+          
           {/* Security Programs - With Links */}
           {securityLogos.map((logo) => (
             <a
@@ -177,24 +195,6 @@ export const Footer = () => {
               />
             </a>
           ))}
-          
-          {/* Bank Logo - With Link */}
-          <a
-            href={bankLogo.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-opacity duration-200 hover:opacity-80"
-            aria-label="OTP banka – official website"
-          >
-            <img
-              src={bankLogo.src}
-              alt={bankLogo.alt}
-              className="h-10 sm:h-12 md:h-14 w-auto object-contain"
-              loading="lazy"
-              width="auto"
-              height="56"
-            />
-          </a>
         </div>
 
         {/* Legal Payment Notice */}
