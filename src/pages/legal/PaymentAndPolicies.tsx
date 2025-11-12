@@ -195,7 +195,7 @@ const PaymentAndPolicies = () => {
             </h2>
             <div className="space-y-4">
         <p className="text-lg text-muted-foreground leading-relaxed">
-          When entering card details, confidential information is transmitted over a secure (SSL/TLS) connection directly to the bank's hosted payment page. Card data is never stored or processed on our servers.
+          During payment card data entry, confidential information is transmitted via a public network in a protected (encrypted) form. Payment card information is not available to our system at any moment
         </p>
             </div>
           </section>
