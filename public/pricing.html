@@ -981,6 +981,123 @@ img { display:block; }
   body { background:#fff; }
   .doc { padding:0; max-width:none; }
 }
+
+/* ============================================================
+   TABLET (max-width: 768px)
+============================================================ */
+@media (max-width: 768px) {
+  .cover { padding:40px 36px 36px; }
+  .cover-brand { margin-bottom:36px; }
+  .cover-h1 { font-size:38px; }
+  .cover-pitch { font-size:var(--t-n); margin-bottom:32px; }
+  .intro { padding:32px 36px; }
+  .intro-grid { gap:36px; }
+  .stats-bar { padding:24px 36px; }
+  .sec-header { padding:14px 36px; }
+  .sec-body { padding:20px 36px 24px; }
+  .notes { padding:30px 36px 36px; }
+  .bundle { padding:22px 22px 20px; }
+}
+
+/* ============================================================
+   MOBILE (max-width: 640px)
+============================================================ */
+@media (max-width: 640px) {
+  .doc { padding:16px 8px 32px; }
+
+  /* Cover */
+  .cover { padding:28px 20px 28px; border-radius:var(--r-lg) var(--r-lg) 0 0; }
+  .cover-orb-r, .cover-orb-l, .cover-deco { display:none; }
+  .cover-brand { flex-direction:column; align-items:flex-start; gap:14px; margin-bottom:28px; }
+  .cover-h1 { font-size:28px; letter-spacing:-.02em; margin-bottom:14px; }
+  .cover-pitch { font-size:var(--t-sm); margin-bottom:28px; max-width:100%; }
+  .cover-kicker { font-size:9px; padding:4px 10px; margin-bottom:14px; }
+  .cover-meta { gap:6px 16px; }
+  .meta-pill { font-size:var(--t-xs); }
+
+  /* Intro */
+  .intro { padding:24px 20px; }
+  .intro-top { flex-direction:column; align-items:flex-start; gap:10px; margin-bottom:24px; }
+  .intro-grid { grid-template-columns:1fr; gap:28px; }
+
+  /* Stats bar */
+  .stats-bar {
+    padding:20px 20px;
+    grid-template-columns:1fr;
+    gap:0;
+  }
+  .stat-rule {
+    height:1px;
+    width:100%;
+    background:rgba(255,255,255,.08);
+    margin:12px 0;
+  }
+  .stat { text-align:left; padding:8px 0; }
+  .stat-num { font-size:var(--t-2xl); display:inline; margin-right:8px; }
+  .stat-label { display:inline; }
+
+  /* Section chrome */
+  .sec-header { padding:12px 20px; flex-wrap:wrap; }
+  .sec-sub { display:none; }
+  .sec-body { padding:16px 20px 20px; }
+
+  /* Card grids → single column */
+  .card-grid { grid-template-columns:1fr; }
+
+  /* Service card top row → stack */
+  .svc-top { flex-direction:column; gap:6px; }
+  .price { text-align:left; }
+  .price-n { font-size:var(--t-lg); }
+
+  /* Feature grids → single column */
+  .feat-grid { grid-template-columns:1fr; }
+
+  /* Addon table */
+  .addon-row { flex-direction:column; align-items:flex-start; gap:6px; padding:12px 16px; }
+  .addon-price { text-align:left; }
+
+  /* Bundle card */
+  .bundle { padding:18px 18px 16px; border-radius:var(--r-lg); margin-top:10px; }
+  .bundle-top { flex-direction:column; gap:8px; }
+  .bundle-price { text-align:left; }
+  .bundle-price .amt { font-size:var(--t-2xl); }
+  .bundle-feats { grid-template-columns:1fr; }
+  .bundle-badge { top:-11px; right:14px; font-size:9px; padding:4px 10px; }
+
+  /* Podcast */
+  .podcast-card { padding:18px 18px; }
+  .podcast-top { flex-direction:column; gap:6px; }
+  .podcast-price { text-align:left; }
+  .podcast-price .amt { font-size:var(--t-xl); }
+  .podcast-delivs { grid-template-columns:1fr; }
+
+  /* Notes & footer */
+  .notes { padding:24px 20px 28px; border-radius:0 0 var(--r-lg) var(--r-lg); }
+  .notes-foot { flex-direction:column; align-items:flex-start; gap:10px; }
+}
+
+/* ============================================================
+   EXTRA-SMALL PHONES (max-width: 480px)
+============================================================ */
+@media (max-width: 480px) {
+  .doc { padding:8px 4px 20px; }
+  .cover { padding:22px 16px 22px; }
+  .cover-h1 { font-size:24px; }
+  .cover-pitch { font-size:11px; line-height:1.6; }
+  .brand-logobox { width:44px; height:44px; border-radius:12px; }
+  .brand-logobox img { width:34px; height:34px; }
+  .brand-name { font-size:var(--t-md); }
+  .intro { padding:20px 16px; }
+  .stats-bar { padding:16px 16px; }
+  .sec-header { padding:10px 16px; }
+  .sec-body { padding:14px 16px 16px; }
+  .notes { padding:20px 16px 24px; }
+  .svc-card { padding:14px 16px; }
+  .bundle { padding:14px 14px 12px; }
+  .podcast-card { padding:14px 14px; }
+  .addon-row { padding:10px 14px; }
+  .cover-meta { flex-direction:column; gap:6px; }
+}
 </style>
 </head>
 <body>

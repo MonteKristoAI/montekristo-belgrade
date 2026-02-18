@@ -32,12 +32,21 @@ const Pricing = () => {
         schema={[pricingSchema]}
       />
 
+      <style>{`
+        .pricing-bar { padding: 10px 24px; }
+        .pricing-label { display: inline; }
+        @media (max-width: 640px) {
+          .pricing-bar { padding: 8px 12px; }
+          .pricing-label { display: none; }
+        }
+      `}</style>
+
       {/* Top control bar */}
       <div
+        className="pricing-bar"
         style={{
           background: "#0d1117",
           borderBottom: "1px solid rgba(255,255,255,0.09)",
-          padding: "10px 24px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
@@ -64,6 +73,7 @@ const Pricing = () => {
 
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <span
+            className="pricing-label"
             style={{
               fontSize: "11px",
               color: "rgba(255,255,255,0.28)",
