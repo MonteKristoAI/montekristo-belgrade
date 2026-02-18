@@ -262,7 +262,7 @@ async function triggerN8NWebhook(data: FormSubmission, airtableRecordId: string)
     }
   } catch (error) {
     // Silent failure for webhook - don't affect main form submission
-    console.log('N8N webhook error (ignored):', error.message)
+    console.log('N8N webhook error (ignored):', error instanceof Error ? error.message : error)
   }
 }
 
