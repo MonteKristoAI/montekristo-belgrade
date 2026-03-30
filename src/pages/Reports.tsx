@@ -26,6 +26,20 @@ const REPORTS = [
       { label: "Q1 Avg Traffic", value: "93", delta: "+343% vs baseline" },
     ],
   },
+  {
+    id: "breathmastery-q1-2026",
+    title: "BreathMastery — SEO Progress Report",
+    subtitle: "Q1 2026 · March 2026 Focus · breathmastery.com",
+    date: "March 29, 2026",
+    tag: "SEO Report",
+    description:
+      "Organic traffic growth (+17%), backlink acceleration (+223 in March), referring domain expansion, /meet-dan/ page traffic +271%, 4 published blog posts, SERP distribution across 248 keywords, and 90-day editorial plan.",
+    stats: [
+      { label: "Backlinks", value: "6,018", delta: "+223 in March" },
+      { label: "Ref. Domains", value: "713", delta: "+19 vs Feb" },
+      { label: "Est. Traffic", value: "104", delta: "+17% in 4 weeks" },
+    ],
+  },
 ];
 
 const Reports = () => {
