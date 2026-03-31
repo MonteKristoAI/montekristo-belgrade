@@ -934,6 +934,19 @@
     </div>
   </div>
 
+  <div class="info-box coral" style="margin-top:12px;">
+    <div class="info-icon">⚠️</div>
+    <div>
+      <h4>Important — Prices are fixed inside the automation</h4>
+      <p>There is no live pricing API from CW Global or Cora. The pricing tables for Shutters and Roller Blinds are hardcoded directly inside the n8n workflow. This means:</p>
+      <ul style="margin-top:8px;">
+        <li>The automation will always use the prices that were current at the time it was built.</li>
+        <li>If CW Global changes their price list, the automation will continue using the old prices until it is manually updated.</li>
+        <li><strong>When prices change, Chris must notify Alex at MonteKristo AI</strong> so the pricing tables inside the workflow can be updated. This is a quick fix but it must be done — otherwise quotes will be calculated using outdated costs.</li>
+      </ul>
+    </div>
+  </div>
+
   <hr class="section-divider" />
 
   <!-- ── SECTION 6: QUOTE FOLLOW-UP ─────────────────── -->
@@ -1046,14 +1059,21 @@
     </thead>
     <tbody>
       <tr><td>Shutters</td><td>Oasis Shutters (Hinged, Aero 63mm)</td><td class="td-green">✓ Automatic</td><td class="td-green">✓ Auto ($202/m²)</td></tr>
-      <tr><td>Roller Blinds</td><td>Roller Blinds | Atlas (Single Blind)</td><td class="td-green">✓ Automatic</td><td class="td-green">✓ Auto (Cat 1 table)</td></tr>
-      <tr><td>Curtains</td><td>Curtain & Track (S-Wave)</td><td class="td-green">✓ Automatic</td><td class="td-amber">Manual (Chris enters)</td></tr>
-      <tr><td>Awnings</td><td>Ombra Awnings (Zip Guide)</td><td class="td-green">✓ Automatic</td><td class="td-amber">Manual (Chris enters)</td></tr>
+      <tr><td>Roller Blinds</td><td>Roller Blinds | Atlas (Single Blind)</td><td class="td-amber">⚠️ IDs pending</td><td class="td-green">✓ Auto (Cat 1 table)</td></tr>
+      <tr><td>Curtains</td><td>Curtain & Track (S-Wave)</td><td class="td-amber">⚠️ IDs pending</td><td class="td-amber">Manual (Chris enters)</td></tr>
+      <tr><td>Awnings</td><td>Ombra Awnings (Zip Guide)</td><td class="td-amber">⚠️ IDs pending</td><td class="td-amber">Manual (Chris enters)</td></tr>
       <tr><td>Zipscreens</td><td>—</td><td class="td-amber">Not in Cora API</td><td class="td-amber">Manual (Chris enters)</td></tr>
       <tr><td>Security Roller Shutters</td><td>—</td><td class="td-amber">Not in Cora API</td><td class="td-amber">Manual (Chris enters)</td></tr>
     </tbody>
   </table>
   <p style="font-size:12.5px;color:var(--muted);margin-top:8px;">Zipscreens and Security Roller Shutters are not available through the Cora API — Chris places those orders manually through the Cora website as before.</p>
+  <div class="info-box amber" style="margin-top:12px;">
+    <div class="info-icon">⚠️</div>
+    <div>
+      <h4>Cora product IDs — confirmation needed for Roller Blinds, Curtains & Awnings</h4>
+      <p>Only Shutters (Oasis) are fully confirmed in the Cora API with the correct Range, Type, and Material IDs. For Roller Blinds, Curtains, and Awnings, Chris needs to confirm the exact product IDs from the Cora portal so Alex at MonteKristo AI can update the workflow. Until then, automatic Cora orders for those products may not submit correctly.</p>
+    </div>
+  </div>
 
   <hr class="section-divider" />
 
@@ -1130,7 +1150,7 @@
         <div class="info-icon">ℹ️</div>
         <div>
           <h4>Cora has no pricing API</h4>
-          <p>Cora's API is for placing orders only — it doesn't return pricing. That's why the pricing tables for Shutters and Roller Blinds are embedded directly in the automation.</p>
+          <p>Cora's API is for placing orders only — it does not return or expose pricing data. That's why the pricing tables for Shutters and Roller Blinds are embedded directly inside the n8n workflow. If CW Global updates their price list, Chris must notify Alex at MonteKristo AI to update the workflow manually.</p>
         </div>
       </div>
     </div>
@@ -1181,6 +1201,7 @@
             <li>Review and send the Xero invoice from Xero</li>
             <li>Schedule the installation with the customer</li>
             <li>Place Cora orders manually for Zipscreens and Security Roller Shutters</li>
+            <li><strong>Notify Alex at MonteKristo AI when CW Global changes their price list</strong> — the automation uses fixed pricing tables and will not update automatically</li>
           </ul>
         </div>
       </div>
@@ -1191,8 +1212,8 @@
 
   <!-- ── SECTION 11: SETUP STEPS ────────────────────── -->
   <div class="section-label">Section 11</div>
-  <h2>Pending Setup Steps — Action Required</h2>
-  <p class="section-intro">The automation is fully built and running. However, a few one-time setup steps in GoHighLevel and Xero must be completed before the system can fire automatically in production. These cannot be done via the API — they require Chris or Zoran to log into the dashboard.</p>
+  <h2>Setup Status</h2>
+  <p class="section-intro">The automation is fully built and running. One final step remains before quote creation is live — Chris authorising Xero. All GHL automations are published and confirmed working.</p>
 
   <div style="background:var(--white);border:1.5px solid var(--border);border-radius:16px;padding:28px 32px;margin-bottom:24px;">
     <ul class="checklist">
@@ -1200,36 +1221,39 @@
       <li>
         <div class="check-icon check-chris">🔑</div>
         <div>
-          <strong style="font-size:14px;font-weight:700;color:var(--navy);display:block;margin-bottom:4px;">Chris — Authorise Xero (one-time, 2 minutes)</strong>
+          <strong style="font-size:14px;font-weight:700;color:var(--navy);display:block;margin-bottom:4px;">Chris — Authorise Xero (one-time, 2 minutes) <span style="background:#FEF9C3;color:#B45309;font-size:11px;font-weight:600;padding:2px 10px;border-radius:20px;margin-left:8px;letter-spacing:1px;text-transform:uppercase;">Pending</span></strong>
           <p style="font-size:13.5px;color:var(--muted);">Chris needs to visit the following URL once in his browser and log in with the LuxeShutters Xero credentials. This authorises the automation to create quotes and invoices on his behalf. After this, it never needs to be done again — the system refreshes automatically.</p>
           <code style="display:block;background:var(--navy);color:var(--coral);padding:10px 16px;border-radius:8px;font-size:13px;margin-top:10px;">https://primary-production-5fdce.up.railway.app/webhook/xero-auth-start</code>
         </div>
       </li>
 
       <li style="margin-top:8px;">
-        <div class="check-icon check-pending">⚙️</div>
+        <div class="check-icon" style="background:#DCFCE7;color:#16A34A;">✓</div>
         <div>
-          <strong style="font-size:14px;font-weight:700;color:var(--navy);display:block;margin-bottom:4px;">Zoran — Create 3 GHL Automation Webhooks (in GHL dashboard)</strong>
-          <p style="font-size:13.5px;color:var(--muted);">In GHL → Automations → create three automation workflows. Each one watches for a pipeline stage change and sends a webhook to trigger the n8n automation. This is what connects the pipeline stage changes to the automation system.</p>
+          <strong style="font-size:14px;font-weight:700;color:var(--navy);display:block;margin-bottom:4px;">3 GHL Automation Webhooks — Created &amp; Published <span style="background:#DCFCE7;color:#16A34A;font-size:11px;font-weight:600;padding:2px 10px;border-radius:20px;margin-left:8px;letter-spacing:1px;text-transform:uppercase;">Done</span></strong>
+          <p style="font-size:13.5px;color:var(--muted);">All three GHL automations are published and confirmed triggering n8n correctly. Each watches for a pipeline stage change and fires a webhook to the automation system.</p>
           <table class="simple-table" style="margin-top:12px;">
             <thead>
-              <tr><th>Automation Name</th><th>Trigger</th><th>Webhook URL</th></tr>
+              <tr><th>Automation Name</th><th>Trigger</th><th>Webhook URL</th><th>Status</th></tr>
             </thead>
             <tbody>
               <tr>
-                <td>Luxe Quote Generate</td>
+                <td>Luxe - Quote Generate</td>
                 <td>Stage → Quote Requested</td>
                 <td style="font-size:12px;word-break:break-all;color:var(--coral);">…/webhook/luxe-quote-generate</td>
+                <td class="td-green">✓ Published</td>
               </tr>
               <tr>
-                <td>Luxe Quote Follow-up</td>
+                <td>Quote Follow-up</td>
                 <td>Stage → Quote Sent</td>
                 <td style="font-size:12px;word-break:break-all;color:var(--coral);">…/webhook/luxe-quote-followup</td>
+                <td class="td-green">✓ Published</td>
               </tr>
               <tr>
-                <td>Luxe Sale Won</td>
+                <td>Sale Won</td>
                 <td>Stage → Won</td>
                 <td style="font-size:12px;word-break:break-all;color:var(--coral);">…/webhook/luxe-sale-won</td>
+                <td class="td-green">✓ Published</td>
               </tr>
             </tbody>
           </table>
@@ -1314,38 +1338,6 @@
     </tbody>
   </table>
 
-  <hr class="section-divider" />
-
-  <!-- ── SECTION 13: SUPPORT ─────────────────────────── -->
-  <div class="section-label">Section 13</div>
-  <h2>Support & Contact</h2>
-  <p class="section-intro">For any questions about the system, changes to workflows, new automations, or technical issues, contact MonteKristo AI directly.</p>
-
-  <div class="three-col">
-    <div class="overview-card">
-      <span class="overview-icon">🌐</span>
-      <h3>Website</h3>
-      <p>montekristoai.com</p>
-    </div>
-    <div class="overview-card">
-      <span class="overview-icon">💼</span>
-      <h3>LinkedIn</h3>
-      <p>linkedin.com/company/montekristo-ai</p>
-    </div>
-    <div class="overview-card">
-      <span class="overview-icon">📧</span>
-      <h3>Email</h3>
-      <p>contact@montekristobelgrade.com</p>
-    </div>
-  </div>
-
-  <div class="info-box blue" style="margin-top:24px;">
-    <div class="info-icon">🔒</div>
-    <div>
-      <h4>Security & Data</h4>
-      <p>All automation runs on a private Railway cloud server (HTTPS only). API tokens for GHL, Xero, and Cora are stored securely in the automation environment. The Xero OAuth token is stored in n8n's encrypted static data store and rotated automatically on every use. No customer data is stored outside of GoHighLevel, Xero, and Cora — the same systems LuxeShutters already uses.</p>
-    </div>
-  </div>
 
 </div><!-- /container -->
 
