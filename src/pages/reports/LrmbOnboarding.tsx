@@ -39,8 +39,8 @@ const DELIVERABLES = [
 // ─── PRIMITIVES ───────────────────────────────────────────────────────────────
 
 const RadioOpt = ({ name, value, checked, onChange, label }: { name: string; value: string; checked: boolean; onChange: () => void; label: string }) => (
-  <label className="flex items-center gap-2.5 cursor-pointer group">
-    <div onClick={onChange} className={`w-4 h-4 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors cursor-pointer ${checked ? "border-blue-500 bg-blue-500" : "border-gray-600 group-hover:border-gray-400"}`}>
+  <label className="flex items-center gap-2.5 cursor-pointer group" onClick={onChange}>
+    <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors cursor-pointer ${checked ? "border-blue-500 bg-blue-500" : "border-gray-600 group-hover:border-gray-400"}`}>
       {checked && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
     </div>
     <span className="text-gray-300 text-sm">{label}</span>
@@ -48,8 +48,8 @@ const RadioOpt = ({ name, value, checked, onChange, label }: { name: string; val
 );
 
 const CheckOpt = ({ checked, onChange, label }: { checked: boolean; onChange: () => void; label: string }) => (
-  <label className="flex items-center gap-2.5 cursor-pointer group">
-    <div onClick={onChange} className={`w-4 h-4 rounded border-2 flex items-center justify-center flex-shrink-0 transition-colors cursor-pointer ${checked ? "border-blue-500 bg-blue-500" : "border-gray-600 group-hover:border-gray-400"}`}>
+  <label className="flex items-center gap-2.5 cursor-pointer group" onClick={onChange}>
+    <div className={`w-4 h-4 rounded border-2 flex items-center justify-center flex-shrink-0 transition-colors cursor-pointer ${checked ? "border-blue-500 bg-blue-500" : "border-gray-600 group-hover:border-gray-400"}`}>
       {checked && <Check className="w-2.5 h-2.5 text-white" />}
     </div>
     <span className="text-gray-300 text-sm">{label}</span>
@@ -149,11 +149,9 @@ const LrmbOnboarding = () => {
           <RadioOpt key={opt} name={field} value={opt} checked={formData[field] === opt} onChange={() => set(field, opt)} label={opt} />
         ))}
       </div>
-      {formData[field] === "Other" && (
-        <div className="ml-6 mt-1">
-          <TI value={formData[`${field}_other`] ?? ""} onChange={(v) => set(`${field}_other`, v)} placeholder="Please specify..." />
-        </div>
-      )}
+      <div className="ml-6 mt-1">
+        <TI value={formData[`${field}_other`] ?? ""} onChange={(v) => set(`${field}_other`, v)} placeholder="Anything else to add or clarify..." />
+      </div>
     </div>
   );
 
@@ -161,16 +159,26 @@ const LrmbOnboarding = () => {
   const cbg = (field: string, label: string, options: string[], hint?: string) => (
     <div>
       <FL hint={hint}>{label}</FL>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 mb-2">
         {[...options, "Other"].map((opt) => (
           <CheckOpt key={opt} checked={isChk(field, opt)} onChange={() => toggle(field, opt)} label={opt} />
         ))}
       </div>
-      {isChk(field, "Other") && (
-        <div className="ml-6 mt-2">
-          <TI value={formData[`${field}_other`] ?? ""} onChange={(v) => set(`${field}_other`, v)} placeholder="Please specify..." />
-        </div>
-      )}
+      <div className="ml-6 mt-2">
+        <TI value={formData[`${field}_other`] ?? ""} onChange={(v) => set(`${field}_other`, v)} placeholder="Anything else to add or clarify..." />
+      </div>
+    </div>
+  );
+
+  // ── Helper: section-end open question ──────────────────────────────────────
+  const sq = (id: string, topic: string) => (
+    <div className="mt-2 pt-4 border-t border-white/[0.06]">
+      <FL hint="The more context you share, the better we can tailor this to your exact workflow.">
+        Anything else about {topic} we should know? Did we miss anything?
+      </FL>
+      <TA value={formData[`${id}_extra`] ?? ""} onChange={(v) => set(`${id}_extra`, v)}
+        placeholder={"e.g. \"We also have a process where...\" or \"One thing that really matters to us is...\" — any extra detail helps us build this right."}
+        rows={3} />
     </div>
   );
 
@@ -256,6 +264,7 @@ const LrmbOnboarding = () => {
             {rg("s01_names", "Should we use the same property names as in TravelNet?", ["Yes, same names", "No, we use different names", "We'll confirm later"])}
             <Hr />
             {rg("s01_ids", "Do you use internal property IDs or codes?", ["Yes", "No"])}
+            {sq("s01", "your properties and units")}
           </SC>
         )}
 
@@ -317,6 +326,7 @@ const LrmbOnboarding = () => {
             )}
             <Hr />
             <div><FL>How many people need access to the admin dashboard?</FL><TI type="number" value={formData.s02_admin_count ?? ""} onChange={(v) => set("s02_admin_count", v)} placeholder="e.g. 4" /></div>
+            {sq("s02", "your staff roster and access permissions")}
           </SC>
         )}
 
@@ -356,6 +366,7 @@ const LrmbOnboarding = () => {
             {rg("s03_insp_auto", "Should a flagged inspection item automatically create a maintenance task?", ["Yes, we want this","No","Undecided"])}
             <Hr />
             <div><FL>Any other task types not covered above?</FL><TA value={formData.s03_other ?? ""} onChange={(v) => set("s03_other", v)} placeholder="Describe any general or miscellaneous task types..." /></div>
+            {sq("s03", "your task types, categories, and workflows")}
           </SC>
         )}
 
@@ -405,6 +416,7 @@ const LrmbOnboarding = () => {
                 ))}
               </div>
             </div>
+            {sq("s04", "task statuses and completion rules")}
           </SC>
         )}
 
@@ -425,6 +437,7 @@ const LrmbOnboarding = () => {
             {formData.s05_sla === "Yes" && (
               <div className="ml-6 -mt-2"><TA value={formData.s05_sla_detail ?? ""} onChange={(v) => set("s05_sla_detail", v)} placeholder="e.g. AC repairs: within 4 hours, plumbing: within 2 hours..." /></div>
             )}
+            {sq("s05", "escalation rules and response times")}
           </SC>
         )}
 
@@ -445,6 +458,7 @@ const LrmbOnboarding = () => {
             )}
             <Hr />
             {cbg("s06_task_data", "What reservation data should appear in the housekeeping task?", ["Guest name","Checkout time","Check-in time","Property and unit","Special instructions"])}
+            {sq("s06", "the TravelNet integration")}
           </SC>
         )}
 
@@ -459,6 +473,7 @@ const LrmbOnboarding = () => {
             {formData.s07_reply === "Yes" && (
               <div className="ml-6 -mt-2"><TA value={formData.s07_reply_msg ?? ""} onChange={(v) => set("s07_reply_msg", v)} placeholder='Draft auto-reply message... e.g. "Thank you for letting us know. Our team is on it."' /></div>
             )}
+            {sq("s07", "the Akia integration and guest messaging")}
           </SC>
         )}
 
@@ -517,6 +532,7 @@ const LrmbOnboarding = () => {
             {formData.s08_volume === "Custom — specify below" && (
               <div className="ml-6 -mt-2"><TA value={formData.s08_volume_custom ?? ""} onChange={(v) => set("s08_volume_custom", v)} placeholder="Describe which events should trigger notifications..." /></div>
             )}
+            {sq("s08", "notifications and how your team communicates")}
           </SC>
         )}
 
@@ -538,6 +554,7 @@ const LrmbOnboarding = () => {
             {rg("s09_damage_form", "Do you have a separate damage report form different from the standard inspection?", ["Yes, it's a different form","No, same checklist","We don't have one yet"])}
             <Hr />
             {rg("s09_scoring", "What scoring system do you prefer for inspections?", ["1–5 scale","Pass / Fail checkmark","Both (score + pass/fail)","Haven't decided yet"])}
+            {sq("s09", "inspections and your checklists")}
           </SC>
         )}
 
@@ -560,6 +577,7 @@ const LrmbOnboarding = () => {
             {cbg("s10_devices", "Which devices do field staff use?", ["iOS (iPhone)","Android","Both iOS and Android"])}
             <Hr />
             {rg("s10_offline", "Is the app expected to work offline?", ["Always online — no offline needed","Sometimes offline","Frequently offline"])}
+            {sq("s10", "branding, UX, and how you want the app to feel")}
           </SC>
         )}
 
@@ -577,6 +595,7 @@ const LrmbOnboarding = () => {
             {rg("s11_audit", "Do you need an audit trail to review historical task activity?", ["Yes, very important","Nice to have","Not needed"])}
             <Hr />
             {rg("s11_kpi_reports", "Do you need weekly or monthly KPI reports?", ["Weekly KPI report","Monthly KPI report","Both","Not needed"])}
+            {sq("s11", "your dashboard and reporting needs")}
           </SC>
         )}
 
@@ -614,6 +633,7 @@ const LrmbOnboarding = () => {
             {rg("s12_retention", "How long should task history be retained?", ["1 year","2 years","Indefinitely","Unsure — open to recommendation"])}
             <Hr />
             <div><FL>Primary technical contact for production issues</FL><TI value={formData.s12_tech_contact ?? ""} onChange={(v) => set("s12_tech_contact", v)} placeholder="Name and email address" /></div>
+            {sq("s12", "production deployment and your technical setup")}
           </SC>
         )}
 
@@ -632,6 +652,7 @@ const LrmbOnboarding = () => {
             {rg("s13_reopen", "What percentage of tasks get reopened (reopen rate)?", ["Less than 5%","5–15%","15–30%","More than 30%","Unknown"])}
             <Hr />
             <div><FL>How many times per day does admin verbally ask "did you finish that task?"</FL><TI type="number" value={formData.s13_verbal ?? ""} onChange={(v) => set("s13_verbal", v)} placeholder="e.g. 5" /></div>
+            {sq("s13", "your baseline metrics and current operations")}
           </SC>
         )}
 
@@ -675,6 +696,7 @@ const LrmbOnboarding = () => {
             <Hr />
             {rg("s14_guest_bypass", "What happens when a guest complains directly to a manager, bypassing the system?", ["Manager enters it into the app — it becomes a task","Handled outside the system entirely","Hybrid — sometimes in, sometimes out"])}
             <div className="mt-2"><TA value={formData.s14_guest_bypass_detail ?? ""} onChange={(v) => set("s14_guest_bypass_detail", v)} placeholder="Any additional context..." rows={2} /></div>
+            {sq("s14", "anything we haven't asked — processes, edge cases, things that matter most to your team")}
           </SC>
         )}
 
