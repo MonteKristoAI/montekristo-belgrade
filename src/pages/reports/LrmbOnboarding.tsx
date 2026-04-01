@@ -102,6 +102,7 @@ const LrmbOnboarding = () => {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [viewPassword, setViewPassword] = useState<string | null>(null);
   const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const tabsRef = useRef<HTMLDivElement>(null);
 
@@ -207,7 +208,17 @@ const LrmbOnboarding = () => {
         <Check className="w-7 h-7 text-green-400" />
       </div>
       <h1 className="text-2xl font-bold mb-3">Questionnaire Submitted</h1>
-      <p className="text-gray-400 text-center max-w-sm leading-relaxed mb-8">Thank you! Your answers have been saved. We'll review everything and be in touch within 24 hours.</p>
+      <p className="text-gray-400 text-center max-w-sm leading-relaxed mb-6">Thank you! Your answers have been saved. We'll review everything and be in touch within 24 hours.</p>
+      {viewPassword && (
+        <div className="bg-white/[0.04] border border-white/[0.09] rounded-2xl px-8 py-6 text-center max-w-sm w-full mb-8">
+          <p className="text-xs text-gray-500 mb-2 uppercase tracking-widest">Your access code</p>
+          <p className="text-3xl font-mono font-bold tracking-widest text-white mb-3">{viewPassword}</p>
+          <p className="text-xs text-gray-500 leading-relaxed mb-4">Use this code to view your submitted answers at any time.</p>
+          <a href="/results/lrmb" className="inline-block text-xs text-blue-400 hover:text-blue-300 transition-colors underline underline-offset-2">
+            montekristobelgrade.com/results/lrmb →
+          </a>
+        </div>
+      )}
       <button onClick={() => navigate("/reports")} className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors">
         <ArrowLeft className="w-4 h-4" /> Back to Reports
       </button>
@@ -770,9 +781,13 @@ const LrmbOnboarding = () => {
                 onClick={async () => {
                   setSubmitting(true);
                   setSubmitError(null);
+                  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+                  const vp = Array.from({ length: 8 }, () => chars[Math.floor(Math.random() * chars.length)]).join("");
+                  const viewPw = `${vp.slice(0, 4)}-${vp.slice(4)}`;
                   const { error } = await supabase.from("form_submissions").insert({
                     client: "lrmb",
                     data: { formData, staffRows, adminRows, fileNames, filePaths },
+                    view_password: viewPw,
                   });
                   if (error) {
                     setSubmitError("Something went wrong. Please try again or email your answers to contact@montekristobelgrade.com.");
@@ -780,6 +795,7 @@ const LrmbOnboarding = () => {
                     return;
                   }
                   localStorage.setItem(LS_SUBMITTED_KEY, "true");
+                  setViewPassword(viewPw);
                   setSubmitted(true);
                 }}
                 disabled={submitting}

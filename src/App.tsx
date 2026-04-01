@@ -18,6 +18,7 @@ import ReigSolarQ12026 from "./pages/reports/ReigSolarQ12026";
 import BreathMasteryQ12026 from "./pages/reports/BreathMasteryQ12026";
 import LuxeShuttersGuide from "./pages/reports/LuxeShuttersGuide";
 import LrmbOnboarding from "./pages/reports/LrmbOnboarding";
+import LrmbResults from "./pages/reports/LrmbResults";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -43,6 +44,7 @@ const App = () => (
           <Route path="/reports/breathmastery-q1-2026" element={<BreathMasteryQ12026 />} />
           <Route path="/reports/luxeshutters-ai-guide" element={<LuxeShuttersGuide />} />
           <Route path="/reports/lrmb-onboarding" element={<LrmbOnboarding />} />
+          <Route path="/results/lrmb" element={<LrmbResults />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
           </Routes>
