@@ -19,6 +19,9 @@ import BreathMasteryQ12026 from "./pages/reports/BreathMasteryQ12026";
 import LuxeShuttersGuide from "./pages/reports/LuxeShuttersGuide";
 import LrmbOnboarding from "./pages/reports/LrmbOnboarding";
 import LrmbResults from "./pages/reports/LrmbResults";
+import AiiaPortal from "./pages/reports/AiiaPortal";
+import AiiaOnboarding from "./pages/reports/AiiaOnboarding";
+import AiiaResults from "./pages/reports/AiiaResults";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -45,6 +48,9 @@ const App = () => (
           <Route path="/reports/luxeshutters-ai-guide" element={<LuxeShuttersGuide />} />
           <Route path="/reports/lrmb-onboarding" element={<LrmbOnboarding />} />
           <Route path="/results/lrmb" element={<LrmbResults />} />
+          <Route path="/aiia" element={<AiiaPortal />} />
+          <Route path="/aiia/onboarding" element={<AiiaOnboarding />} />
+          <Route path="/aiia/results" element={<AiiaResults />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
           </Routes>
