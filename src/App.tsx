@@ -23,6 +23,7 @@ import AiiaPortal from "./pages/reports/AiiaPortal";
 import AiiaOnboarding from "./pages/reports/AiiaOnboarding";
 import AiiaResults from "./pages/reports/AiiaResults";
 import NotFound from "./pages/NotFound";
+import OnboardingRoutes from "./pages/onboarding/OnboardingRoutes";
 
 const queryClient = new QueryClient();
 
@@ -51,6 +52,7 @@ const App = () => (
           <Route path="/aiia" element={<AiiaPortal />} />
           <Route path="/aiia/onboarding" element={<AiiaOnboarding />} />
           <Route path="/aiia/results" element={<AiiaResults />} />
+          <Route path="/onboarding/*" element={<OnboardingRoutes />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
           </Routes>
