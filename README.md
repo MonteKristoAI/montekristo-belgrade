@@ -144,3 +144,5 @@ To run the Edge Function unit tests:
 ```bash
 deno test supabase/functions/form-submit/_tests.ts --allow-env --allow-net
 ```
+
+<!-- portal merged 2026-05-03 -->
