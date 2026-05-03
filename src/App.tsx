@@ -24,6 +24,7 @@ import AiiaOnboarding from "./pages/reports/AiiaOnboarding";
 import AiiaResults from "./pages/reports/AiiaResults";
 import NotFound from "./pages/NotFound";
 import OnboardingRoutes from "./pages/onboarding/OnboardingRoutes";
+import PortalRoutes from "./portal/PortalRoutes";
 
 const queryClient = new QueryClient();
 
@@ -53,6 +54,8 @@ const App = () => (
           <Route path="/aiia/onboarding" element={<AiiaOnboarding />} />
           <Route path="/aiia/results" element={<AiiaResults />} />
           <Route path="/onboarding/*" element={<OnboardingRoutes />} />
+          {/* MonteKristo Client Portal — schema-driven onboarding intake. Magic-link auth, 30s autosave + manual Save, asset upload, MK admin dashboard. Backed by Supabase project hvdlyrquohxfazhgkfuh (separate from main site). */}
+          <Route path="/reports/portal/*" element={<PortalRoutes />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
           </Routes>

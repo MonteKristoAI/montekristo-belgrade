@@ -1,0 +1,1919 @@
+{
+  "version": 1,
+  "sections": [
+    {
+      "key": "01-business-basics",
+      "title": "Studio Identity & Business Basics",
+      "description": "Osnovni podaci za CLIENT.md profil i pravnu/billing dokumentaciju.",
+      "fields": [
+        {
+          "key": "legal_name",
+          "label": "Pun pravni naziv kompanije",
+          "type": "text",
+          "required": true,
+          "critical": true,
+          "placeholder": "Luxe Fitness LLC"
+        },
+        {
+          "key": "dba_name",
+          "label": "DBA / trading name (ako postoji)",
+          "type": "text"
+        },
+        {
+          "key": "tax_id",
+          "label": "Tax ID / EIN",
+          "type": "text",
+          "required": true,
+          "critical": true,
+          "help": "Koristi se za payment receipts u app-u"
+        },
+        {
+          "key": "website_url",
+          "label": "Postojeći website URL",
+          "type": "url",
+          "required": true,
+          "placeholder": "https://luxefitness.com"
+        },
+        {
+          "key": "primary_email",
+          "label": "Glavni email",
+          "type": "email",
+          "required": true,
+          "critical": true
+        },
+        {
+          "key": "primary_phone",
+          "label": "Glavni telefon",
+          "type": "tel",
+          "required": true
+        },
+        {
+          "key": "operating_country",
+          "label": "Zemlja",
+          "type": "select",
+          "required": true,
+          "critical": true,
+          "options": [
+            {
+              "value": "US",
+              "label": "United States"
+            },
+            {
+              "value": "EU",
+              "label": "Europe (EU)"
+            },
+            {
+              "value": "UK",
+              "label": "United Kingdom"
+            },
+            {
+              "value": "CA",
+              "label": "Canada"
+            },
+            {
+              "value": "AU",
+              "label": "Australia"
+            },
+            {
+              "value": "OTHER",
+              "label": "Other"
+            }
+          ],
+          "help": "Utiče na PWA push, GDPR/CCPA primenljivost"
+        },
+        {
+          "key": "locations",
+          "label": "Lokacije",
+          "type": "array_of_objects",
+          "required": true,
+          "critical": true,
+          "schema": [
+            {
+              "key": "address",
+              "label": "Adresa",
+              "type": "text",
+              "required": true
+            },
+            {
+              "key": "rooms_count",
+              "label": "Broj sala",
+              "type": "number"
+            },
+            {
+              "key": "capacity",
+              "label": "Ukupan kapacitet (osoba)",
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "key": "hours_of_operation",
+          "label": "Hours of operation (po danima)",
+          "type": "textarea",
+          "placeholder": "Pon-Pet 6h-22h, Sub 8h-18h, Ned 9h-15h"
+        },
+        {
+          "key": "primary_contact",
+          "label": "Primary contact (full name + role + email + phone)",
+          "type": "textarea",
+          "required": true,
+          "critical": true
+        },
+        {
+          "key": "secondary_contact",
+          "label": "Secondary contact (backup)",
+          "type": "textarea"
+        },
+        {
+          "key": "approval_authority",
+          "label": "Ko ima authority za sign-off na deliverables?",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "key": "02-brand",
+      "title": "Brand & Visual Identity",
+      "description": "App treba da izgleda kao prirodna ekstenzija vašeg brand-a.",
+      "fields": [
+        {
+          "key": "brand_guide_pdf",
+          "label": "Imate li formalni brand guide PDF?",
+          "type": "boolean",
+          "help": "Upload ide u Assets sekciju"
+        },
+        {
+          "key": "brand_color_primary",
+          "label": "Primary brand color (hex)",
+          "type": "text",
+          "required": true,
+          "critical": true,
+          "placeholder": "#1E3A8A"
+        },
+        {
+          "key": "brand_color_secondary",
+          "label": "Secondary color (hex)",
+          "type": "text"
+        },
+        {
+          "key": "brand_color_accent",
+          "label": "Accent color (hex)",
+          "type": "text"
+        },
+        {
+          "key": "brand_color_background",
+          "label": "Background color (hex)",
+          "type": "text"
+        },
+        {
+          "key": "brand_font_heading",
+          "label": "Heading font",
+          "type": "text",
+          "placeholder": "Poppins / Montserrat / itd."
+        },
+        {
+          "key": "brand_font_body",
+          "label": "Body font",
+          "type": "text",
+          "placeholder": "Inter / Lato / itd."
+        },
+        {
+          "key": "brand_voice_words",
+          "label": "3 reči koje opisuju brand voice",
+          "type": "array_of_strings",
+          "placeholder": "energetic"
+        },
+        {
+          "key": "tagline",
+          "label": "Postojeći tagline / slogan",
+          "type": "text"
+        },
+        {
+          "key": "uses_emojis",
+          "label": "Da li u marketingu koristite emoji?",
+          "type": "boolean"
+        },
+        {
+          "key": "reference_likes",
+          "label": "Apps/sites koji vam se sviđaju (3-5 URL-ova)",
+          "type": "array_of_strings",
+          "placeholder": "https://..."
+        },
+        {
+          "key": "reference_dislikes",
+          "label": "Apps/sites koje NE volite",
+          "type": "array_of_strings",
+          "placeholder": "https://..."
+        }
+      ]
+    },
+    {
+      "key": "03-mindbody",
+      "title": "MindBody Configuration",
+      "description": "Naš app sve ide kroz njihov API. Trebamo full audit setup-a pre dev-a.",
+      "fields": [
+        {
+          "key": "mb_site_id_live",
+          "label": "MindBody SiteId (live)",
+          "type": "text",
+          "required": true,
+          "critical": true
+        },
+        {
+          "key": "mb_site_id_sandbox",
+          "label": "Sandbox SiteId (za dev)",
+          "type": "text",
+          "help": "Traži se od MindBody support-a"
+        },
+        {
+          "key": "mb_subscription_tier",
+          "label": "Subscription tier",
+          "type": "select",
+          "required": true,
+          "options": [
+            {
+              "value": "starter",
+              "label": "Starter ($99/mo)"
+            },
+            {
+              "value": "accelerate",
+              "label": "Accelerate ($279/mo)"
+            },
+            {
+              "value": "ultimate",
+              "label": "Ultimate ($499/mo)"
+            },
+            {
+              "value": "ultimate_plus",
+              "label": "Ultimate Plus ($699/mo)"
+            }
+          ]
+        },
+        {
+          "key": "mb_addons",
+          "label": "Subscription add-ons koje imate",
+          "type": "textarea"
+        },
+        {
+          "key": "mb_merchant_processor",
+          "label": "Merchant processor",
+          "type": "select",
+          "required": true,
+          "critical": true,
+          "options": [
+            {
+              "value": "mindbody_payments",
+              "label": "Mindbody Payments"
+            },
+            {
+              "value": "tsys",
+              "label": "TSYS"
+            },
+            {
+              "value": "bluefin",
+              "label": "Bluefin"
+            },
+            {
+              "value": "elavon",
+              "label": "Elavon"
+            },
+            {
+              "value": "paysafe",
+              "label": "Paysafe"
+            },
+            {
+              "value": "adyen",
+              "label": "Adyen"
+            },
+            {
+              "value": "ezidebit",
+              "label": "Ezidebit"
+            },
+            {
+              "value": "other",
+              "label": "Drugi (navedi u beleškama)"
+            }
+          ]
+        },
+        {
+          "key": "mb_merchant_active",
+          "label": "Da li je merchant account aktivan i prihvata Visa/MC/Amex/Discover?",
+          "type": "boolean",
+          "required": true,
+          "critical": true
+        },
+        {
+          "key": "mb_processing_fee",
+          "label": "Trenutna processing fee struktura",
+          "type": "text",
+          "placeholder": "2.9% + $0.30"
+        },
+        {
+          "key": "mb_accepts_ach",
+          "label": "Prihvatate ACH / direktan debit?",
+          "type": "boolean"
+        },
+        {
+          "key": "mb_accepts_giftcards",
+          "label": "Prihvatate gift cards?",
+          "type": "boolean"
+        },
+        {
+          "key": "mb_programs",
+          "label": "Lista programa (yoga, pilates, HIIT, itd.) sa kratkim opisima",
+          "type": "textarea",
+          "critical": true
+        },
+        {
+          "key": "mb_session_types",
+          "label": "Lista session types",
+          "type": "textarea"
+        },
+        {
+          "key": "mb_personal_training",
+          "label": "Nudite li personal training (1-on-1)?",
+          "type": "boolean"
+        },
+        {
+          "key": "mb_workshops",
+          "label": "Workshops / events / retreats?",
+          "type": "textarea"
+        },
+        {
+          "key": "mb_custom_fields",
+          "label": "Imate li custom fields na client records? Lista + opis",
+          "type": "textarea"
+        },
+        {
+          "key": "mb_uses_waiver",
+          "label": "Koristite Mindbody waiver / liability flow?",
+          "type": "boolean"
+        },
+        {
+          "key": "mb_health_questionnaire",
+          "label": "Imate health questionnaire pre prvog časa?",
+          "type": "boolean"
+        },
+        {
+          "key": "mb_loyalty_rewards",
+          "label": "Koristite Loyalty / Rewards u Mindbody-ju?",
+          "type": "boolean"
+        },
+        {
+          "key": "mb_existing_integrations",
+          "label": "Lista postojećih integration-a (Zapier, Make, third-party)",
+          "type": "textarea"
+        },
+        {
+          "key": "mb_partner_approval_ready",
+          "label": "Možete li potvrditi naš MK partner access kroz Mindbody portal kad apliciramo?",
+          "type": "boolean",
+          "critical": true
+        }
+      ]
+    },
+    {
+      "key": "04-pricing",
+      "title": "Pricing, Packages & Memberships",
+      "description": "Sve što app treba da prikaže i prodaje.",
+      "fields": [
+        {
+          "key": "drop_in_pricing",
+          "label": "Drop-in pricing (po klasi tipu)",
+          "type": "array_of_objects",
+          "schema": [
+            {
+              "key": "class_type",
+              "label": "Class type",
+              "type": "text"
+            },
+            {
+              "key": "price",
+              "label": "Cena",
+              "type": "currency"
+            }
+          ]
+        },
+        {
+          "key": "class_packages",
+          "label": "Class packages",
+          "type": "array_of_objects",
+          "critical": true,
+          "schema": [
+            {
+              "key": "name",
+              "label": "Naziv",
+              "type": "text"
+            },
+            {
+              "key": "classes_count",
+              "label": "Broj klasa",
+              "type": "number"
+            },
+            {
+              "key": "price",
+              "label": "Cena",
+              "type": "currency"
+            },
+            {
+              "key": "validity_days",
+              "label": "Period važenja (dani)",
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "key": "memberships",
+          "label": "Membership tiers",
+          "type": "array_of_objects",
+          "critical": true,
+          "schema": [
+            {
+              "key": "name",
+              "label": "Naziv tier-a",
+              "type": "text"
+            },
+            {
+              "key": "monthly_price",
+              "label": "Mesečna cena",
+              "type": "currency"
+            },
+            {
+              "key": "benefits",
+              "label": "Šta uključuje",
+              "type": "textarea"
+            },
+            {
+              "key": "auto_renewal",
+              "label": "Auto-renewal?",
+              "type": "boolean"
+            }
+          ]
+        },
+        {
+          "key": "personal_training",
+          "label": "Personal training paketi",
+          "type": "array_of_objects",
+          "schema": [
+            {
+              "key": "name",
+              "label": "Naziv",
+              "type": "text"
+            },
+            {
+              "key": "sessions",
+              "label": "Broj sesija",
+              "type": "number"
+            },
+            {
+              "key": "price",
+              "label": "Cena",
+              "type": "currency"
+            },
+            {
+              "key": "duration_min",
+              "label": "Trajanje (min)",
+              "type": "number"
+            }
+          ]
+        },
+        {
+          "key": "intro_offer",
+          "label": "New member intro paketi",
+          "type": "textarea",
+          "placeholder": "$49 first month"
+        },
+        {
+          "key": "discount_programs",
+          "label": "Senior / student / family / corporate discount-i",
+          "type": "textarea"
+        },
+        {
+          "key": "promo_codes",
+          "label": "Promo kodovi koje koristite + njihova logika",
+          "type": "textarea"
+        },
+        {
+          "key": "gift_cards",
+          "label": "Prodajete gift cards?",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "key": "05-schedule",
+      "title": "Class Schedule & Operations",
+      "description": "Razumevanje dnevnog i nedeljnog ritma studija.",
+      "fields": [
+        {
+          "key": "classes_per_week",
+          "label": "Koliko klasa imate ukupno nedeljno?",
+          "type": "number",
+          "required": true
+        },
+        {
+          "key": "peak_hours",
+          "label": "Peak hours (kad je najveća tražnja)",
+          "type": "text"
+        },
+        {
+          "key": "off_peak_hours",
+          "label": "Off-peak hours",
+          "type": "text"
+        },
+        {
+          "key": "class_durations",
+          "label": "Klasa duration per program (45/60/75 min)",
+          "type": "textarea"
+        },
+        {
+          "key": "booking_lead_time_days",
+          "label": "Booking lead time (koliko dana unapred)",
+          "type": "number",
+          "required": true,
+          "placeholder": "7"
+        },
+        {
+          "key": "class_capacity_varies",
+          "label": "Da li class capacity varira po programu?",
+          "type": "boolean"
+        },
+        {
+          "key": "waitlist_size",
+          "label": "Waitlist max size",
+          "type": "number"
+        },
+        {
+          "key": "auto_promote_waitlist",
+          "label": "Auto-promote sa waitlist-a?",
+          "type": "boolean"
+        },
+        {
+          "key": "members_drop_in_ratio",
+          "label": "Drop-in vs members ratio (% members)",
+          "type": "number",
+          "placeholder": "70"
+        },
+        {
+          "key": "monthly_cancel_rate",
+          "label": "Koliko klasa otkažete / zamenite trenera mesečno",
+          "type": "number"
+        },
+        {
+          "key": "virtual_classes",
+          "label": "Nudite virtual / hybrid (Zoom) klase?",
+          "type": "boolean"
+        },
+        {
+          "key": "holiday_schedule_rules",
+          "label": "Holiday schedule pravila (Božić, Nova godina, državni)",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "key": "06-trainers",
+      "title": "Team / Trainer Roster",
+      "description": "Treneri su core sadržaj About+Team strane i appear u svakom class card-u.",
+      "fields": [
+        {
+          "key": "trainers",
+          "label": "Treneri",
+          "type": "array_of_objects",
+          "required": true,
+          "critical": true,
+          "schema": [
+            {
+              "key": "full_name",
+              "label": "Full name",
+              "type": "text",
+              "required": true
+            },
+            {
+              "key": "slug",
+              "label": "Slug (URL: /team/jane-doe)",
+              "type": "text"
+            },
+            {
+              "key": "role",
+              "label": "Role / titula",
+              "type": "text",
+              "placeholder": "Lead Trainer / Founder"
+            },
+            {
+              "key": "certifications",
+              "label": "Certifications",
+              "type": "text",
+              "placeholder": "RYT-200, NASM"
+            },
+            {
+              "key": "specialties",
+              "label": "Specialties",
+              "type": "text",
+              "placeholder": "vinyasa, prenatal"
+            },
+            {
+              "key": "short_bio",
+              "label": "Short bio (60-80 reči)",
+              "type": "textarea"
+            },
+            {
+              "key": "long_bio",
+              "label": "Long bio (200-400 reči)",
+              "type": "textarea"
+            },
+            {
+              "key": "years_teaching",
+              "label": "Years teaching",
+              "type": "number"
+            },
+            {
+              "key": "languages",
+              "label": "Languages",
+              "type": "text"
+            },
+            {
+              "key": "instagram",
+              "label": "Instagram URL",
+              "type": "url"
+            },
+            {
+              "key": "linkedin_or_website",
+              "label": "LinkedIn / personal site",
+              "type": "url"
+            },
+            {
+              "key": "classes_taught",
+              "label": "Klasse koje vodi (lista programa)",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "key": "bio_edit_permission",
+          "label": "Ko menja bios kasnije? Owner ili svaki trener svoj?",
+          "type": "select",
+          "options": [
+            {
+              "value": "owner_only",
+              "label": "Samo owner"
+            },
+            {
+              "value": "each_trainer",
+              "label": "Svaki trener svoj"
+            },
+            {
+              "value": "both",
+              "label": "Oba"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "07-customers",
+      "title": "Customer Base & Member Experience",
+      "description": "Ko su ljudi koji će koristiti app + šta im trenutno smeta.",
+      "fields": [
+        {
+          "key": "active_members_count",
+          "label": "Koliko aktivnih members trenutno?",
+          "type": "number",
+          "required": true
+        },
+        {
+          "key": "monthly_drop_ins",
+          "label": "Koliko drop-in (non-member) korisnika mesečno?",
+          "type": "number"
+        },
+        {
+          "key": "demographic_age",
+          "label": "Age range (npr. 25-45)",
+          "type": "text"
+        },
+        {
+          "key": "demographic_gender_split",
+          "label": "Gender split (npr. 60% F / 40% M)",
+          "type": "text"
+        },
+        {
+          "key": "demographic_geography",
+          "label": "Lokalna distribucija",
+          "type": "text"
+        },
+        {
+          "key": "top_churn_reasons",
+          "label": "Top 3 razloga zašto member-i otkazuju membership",
+          "type": "textarea"
+        },
+        {
+          "key": "current_booking_channels",
+          "label": "Kako trenutno bukuju? % distribucija po kanalu",
+          "type": "textarea",
+          "placeholder": "60% Mindbody web, 20% telefon, 15% front desk, 5% Mindbody app"
+        },
+        {
+          "key": "top_complaints",
+          "label": "Top 3 žalbe od members o trenutnom booking-u",
+          "type": "textarea",
+          "critical": true
+        },
+        {
+          "key": "what_works_now",
+          "label": "Šta funkcioniše dobro u trenutnom Mindbody flow-u — ne želimo da pokvarimo?",
+          "type": "textarea"
+        },
+        {
+          "key": "early_adopters",
+          "label": "Imate early-adopter members spremne za beta-test?",
+          "type": "boolean"
+        },
+        {
+          "key": "nps_or_metric",
+          "label": "Imate NPS ili sličnu metriku? Trenutni score?",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "key": "08-policies",
+      "title": "Studio Policies",
+      "description": "Sav policy text za FAQ + Terms strane. Mora biti verbatim — ovo je legal.",
+      "fields": [
+        {
+          "key": "cancellation_hours_before",
+          "label": "Koliko sati pre časa može otkazati besplatno?",
+          "type": "number",
+          "required": true,
+          "critical": true,
+          "placeholder": "12"
+        },
+        {
+          "key": "late_cancel_fee",
+          "label": "Late cancel fee (iznos)",
+          "type": "currency"
+        },
+        {
+          "key": "late_cancel_consumes_credit",
+          "label": "Late cancel troši credit iz paketa?",
+          "type": "boolean"
+        },
+        {
+          "key": "no_show_fee",
+          "label": "No-show fee (iznos)",
+          "type": "currency"
+        },
+        {
+          "key": "no_show_consumes_credit",
+          "label": "No-show troši credit?",
+          "type": "boolean"
+        },
+        {
+          "key": "package_refund_policy",
+          "label": "Da li su paketi refundable? Pod kojim uslovima?",
+          "type": "textarea",
+          "critical": true
+        },
+        {
+          "key": "membership_cancellation_notice_days",
+          "label": "Membership cancellation — sa koliko dana notice-a?",
+          "type": "number"
+        },
+        {
+          "key": "prorata_refunds",
+          "label": "Pro-rata refund-i?",
+          "type": "boolean"
+        },
+        {
+          "key": "dress_code",
+          "label": "Dress code requirements",
+          "type": "textarea"
+        },
+        {
+          "key": "equipment_to_bring",
+          "label": "Equipment to bring (mat, towel, water)",
+          "type": "textarea"
+        },
+        {
+          "key": "phone_policy",
+          "label": "Phone policy u sali",
+          "type": "textarea"
+        },
+        {
+          "key": "food_drink_policy",
+          "label": "Food / drink policy",
+          "type": "textarea"
+        },
+        {
+          "key": "late_arrival_policy",
+          "label": "Late arrival — smete li ući posle X minuta?",
+          "type": "textarea"
+        },
+        {
+          "key": "ada_compliant",
+          "label": "ADA compliance status",
+          "type": "boolean"
+        },
+        {
+          "key": "wheelchair_accessible",
+          "label": "Wheelchair accessibility",
+          "type": "boolean"
+        },
+        {
+          "key": "age_minimum",
+          "label": "Minimum age",
+          "type": "number",
+          "placeholder": "18"
+        },
+        {
+          "key": "minor_with_parent",
+          "label": "Da li 16-17 godišnjaci mogu sa roditeljem?",
+          "type": "boolean"
+        },
+        {
+          "key": "medical_waiver_required",
+          "label": "Tražite medical waiver?",
+          "type": "boolean",
+          "critical": true
+        },
+        {
+          "key": "medical_waiver_text",
+          "label": "Trenutni waiver text (verbatim — ovo ide u legal)",
+          "type": "textarea",
+          "critical": true
+        },
+        {
+          "key": "pregnancy_policy",
+          "label": "Pregnancy / injury disclosure policy",
+          "type": "textarea"
+        },
+        {
+          "key": "covid_illness_policy",
+          "label": "COVID / illness policy",
+          "type": "textarea"
+        },
+        {
+          "key": "needs_digital_signature",
+          "label": "Trebamo digital signature flow u app-u na registraciji?",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "key": "09-faq",
+      "title": "FAQ Source Material",
+      "description": "Sav postojeći FAQ content. Bolje da imamo previše nego premalo.",
+      "fields": [
+        {
+          "key": "top_10_front_desk_qs",
+          "label": "Top 10 pitanja koja front desk najviše čuje",
+          "type": "textarea",
+          "critical": true
+        },
+        {
+          "key": "top_5_new_member_qs",
+          "label": "Top 5 pitanja od potpuno novih members",
+          "type": "textarea"
+        },
+        {
+          "key": "top_5_pricing_qs",
+          "label": "Top 5 pitanja o paketima / plaćanju",
+          "type": "textarea"
+        },
+        {
+          "key": "top_5_cancel_qs",
+          "label": "Top 5 pitanja o cancellation / refund-ima",
+          "type": "textarea"
+        },
+        {
+          "key": "existing_faq_url",
+          "label": "Postojeća FAQ stranica na website-u (URL)",
+          "type": "url"
+        },
+        {
+          "key": "first_class_what_to_bring",
+          "label": "Šta da donesete na prvi čas",
+          "type": "textarea"
+        },
+        {
+          "key": "parking_info",
+          "label": "Parking info (validation, cena, mesto)",
+          "type": "textarea"
+        },
+        {
+          "key": "public_transport_access",
+          "label": "Public transport access",
+          "type": "textarea"
+        },
+        {
+          "key": "lockers_showers",
+          "label": "Lockers / showers info",
+          "type": "textarea"
+        },
+        {
+          "key": "children_policy",
+          "label": "Children policy (smete dovesti dete? babysitting?)",
+          "type": "textarea"
+        },
+        {
+          "key": "pet_policy",
+          "label": "Pet policy",
+          "type": "text"
+        },
+        {
+          "key": "photo_video_policy",
+          "label": "Photo / video policy u sali",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "key": "10-digital-ecosystem",
+      "title": "Existing Digital Ecosystem",
+      "description": "Lista svih tool-ova koje već koriste — gde se integriše, gde zamenjuje, gde ostavlja.",
+      "fields": [
+        {
+          "key": "email_marketing_provider",
+          "label": "Email marketing provider",
+          "type": "select",
+          "options": [
+            {
+              "value": "mailchimp",
+              "label": "Mailchimp"
+            },
+            {
+              "value": "klaviyo",
+              "label": "Klaviyo"
+            },
+            {
+              "value": "convertkit",
+              "label": "ConvertKit"
+            },
+            {
+              "value": "mindbody_built_in",
+              "label": "Mindbody built-in"
+            },
+            {
+              "value": "other",
+              "label": "Drugi"
+            },
+            {
+              "value": "none",
+              "label": "Nemamo"
+            }
+          ]
+        },
+        {
+          "key": "email_subscriber_count",
+          "label": "Postojeća email lista — koliko aktivnih subscriber-a",
+          "type": "number"
+        },
+        {
+          "key": "sms_provider",
+          "label": "SMS marketing provider",
+          "type": "text",
+          "placeholder": "Twilio / Mindbody Attentive / itd."
+        },
+        {
+          "key": "sms_optin_count",
+          "label": "SMS lista — opt-in count",
+          "type": "number"
+        },
+        {
+          "key": "website_cms",
+          "label": "Website CMS",
+          "type": "select",
+          "options": [
+            {
+              "value": "wordpress",
+              "label": "WordPress"
+            },
+            {
+              "value": "squarespace",
+              "label": "Squarespace"
+            },
+            {
+              "value": "wix",
+              "label": "Wix"
+            },
+            {
+              "value": "webflow",
+              "label": "Webflow"
+            },
+            {
+              "value": "custom",
+              "label": "Custom-built"
+            },
+            {
+              "value": "other",
+              "label": "Drugi"
+            }
+          ]
+        },
+        {
+          "key": "domain_registrar",
+          "label": "Domain registrar",
+          "type": "text",
+          "placeholder": "GoDaddy / Namecheap / Cloudflare"
+        },
+        {
+          "key": "email_hosting",
+          "label": "Email hosting",
+          "type": "select",
+          "options": [
+            {
+              "value": "google_workspace",
+              "label": "Google Workspace"
+            },
+            {
+              "value": "m365",
+              "label": "Microsoft 365"
+            },
+            {
+              "value": "other",
+              "label": "Drugi"
+            }
+          ]
+        },
+        {
+          "key": "ga4_id",
+          "label": "GA4 Measurement ID",
+          "type": "text",
+          "placeholder": "G-XXXXXXXXXX"
+        },
+        {
+          "key": "meta_pixel_id",
+          "label": "Meta Pixel ID",
+          "type": "text"
+        },
+        {
+          "key": "active_crm",
+          "label": "Postojeći CRM van Mindbody-ja",
+          "type": "text"
+        },
+        {
+          "key": "active_zapier_make",
+          "label": "Aktivni Zapier / Make / N8N flows",
+          "type": "textarea"
+        },
+        {
+          "key": "online_store",
+          "label": "Online store / retail (Shopify, drugi)",
+          "type": "text"
+        },
+        {
+          "key": "google_business_verified",
+          "label": "Google My Business verifikovan?",
+          "type": "boolean"
+        },
+        {
+          "key": "google_reviews_count",
+          "label": "Google reviews count",
+          "type": "number"
+        },
+        {
+          "key": "yelp_reviews_count",
+          "label": "Yelp reviews count",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "key": "11-app-ux",
+      "title": "App Branding & UX",
+      "description": "Specifične odluke za izgled i ponašanje app-a.",
+      "fields": [
+        {
+          "key": "app_name",
+          "label": "App naziv (PWA + store, max 30 znakova)",
+          "type": "text",
+          "required": true,
+          "critical": true
+        },
+        {
+          "key": "app_short_description",
+          "label": "Kratki opis app-a (subtitle, ~80 znakova)",
+          "type": "text"
+        },
+        {
+          "key": "app_icon_design",
+          "label": "App icon — koristimo logo monogram ili poseban dizajn?",
+          "type": "select",
+          "options": [
+            {
+              "value": "monogram",
+              "label": "Logo monogram"
+            },
+            {
+              "value": "custom",
+              "label": "Poseban dizajn (ide u Assets)"
+            }
+          ]
+        },
+        {
+          "key": "splash_color",
+          "label": "Splash screen color (hex)",
+          "type": "text"
+        },
+        {
+          "key": "default_language",
+          "label": "Default jezik",
+          "type": "select",
+          "options": [
+            {
+              "value": "en",
+              "label": "English"
+            },
+            {
+              "value": "es",
+              "label": "Spanish"
+            },
+            {
+              "value": "multi",
+              "label": "Multi-language"
+            }
+          ]
+        },
+        {
+          "key": "dark_mode_supported",
+          "label": "Dark mode podrška?",
+          "type": "boolean"
+        },
+        {
+          "key": "wants_onboarding_tutorial",
+          "label": "Želite onboarding tutorial u app-u za prvi login?",
+          "type": "boolean"
+        },
+        {
+          "key": "wants_ios_pwa_install_tutorial",
+          "label": "Želite Add to Home Screen tutorial za iOS user-e?",
+          "type": "boolean"
+        },
+        {
+          "key": "motion_preference",
+          "label": "Animations / motion preference",
+          "type": "select",
+          "options": [
+            {
+              "value": "minimal",
+              "label": "Minimalistički"
+            },
+            {
+              "value": "energetic",
+              "label": "Energičan feel"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "12-notifications",
+      "title": "Notifications & Communication",
+      "description": "Šta korisnik dobija, kojim kanalom, kad.",
+      "fields": [
+        {
+          "key": "notif_matrix",
+          "label": "Notifikacije po event-u i kanalu (čekiraj sve koji se šalju)",
+          "type": "matrix",
+          "rows": [
+            "Booking confirmation",
+            "Class reminder 24h pre",
+            "Class reminder 1h pre",
+            "Cancellation confirmation",
+            "Wait list promotion",
+            "Package purchase receipt",
+            "Membership renewal upcoming",
+            "Payment failed",
+            "New class added",
+            "Class cancelled by studio",
+            "Birthday",
+            "Inactivity (haven't booked u X dana)"
+          ],
+          "cols": [
+            "Email",
+            "SMS",
+            "Push"
+          ]
+        },
+        {
+          "key": "quiet_hours",
+          "label": "Quiet hours (npr. nema push posle 22h)",
+          "type": "text"
+        },
+        {
+          "key": "channel_preference_per_user",
+          "label": "User može da bira channel preference?",
+          "type": "boolean"
+        },
+        {
+          "key": "uses_twilio_separately",
+          "label": "Koristite Twilio + email odvojeno, ili sve kroz Mindbody built-in?",
+          "type": "select",
+          "options": [
+            {
+              "value": "mindbody_only",
+              "label": "Sve kroz Mindbody built-in"
+            },
+            {
+              "value": "twilio_separate",
+              "label": "Twilio + email odvojeno"
+            },
+            {
+              "value": "mixed",
+              "label": "Mix"
+            }
+          ]
+        },
+        {
+          "key": "wants_marketing_sms",
+          "label": "Planirate SMS marketing (ne samo transactional)?",
+          "type": "boolean",
+          "help": "Compliance se razlikuje"
+        },
+        {
+          "key": "email_from_address",
+          "label": "Email \"from\" address (treba DKIM/SPF/DMARC setup)",
+          "type": "email"
+        }
+      ]
+    },
+    {
+      "key": "13-phase2",
+      "title": "Phase 2 Vision (exercise library + recorded classes)",
+      "description": "Buduće funkcionalnosti — kako ćete ih monetize-ovati.",
+      "fields": [
+        {
+          "key": "has_recorded_library",
+          "label": "Imate snimljene klase trenutno?",
+          "type": "boolean"
+        },
+        {
+          "key": "current_video_host",
+          "label": "Gde su trenutno hostovane (YouTube, Vimeo, Drive, drugo)?",
+          "type": "text"
+        },
+        {
+          "key": "videos_at_launch",
+          "label": "Koliko videa ćete imati u Phase 2 launch-u?",
+          "type": "number"
+        },
+        {
+          "key": "who_records",
+          "label": "Ko će snimati nove klase?",
+          "type": "select",
+          "options": [
+            {
+              "value": "all_trainers",
+              "label": "Svaki trener"
+            },
+            {
+              "value": "lead_trainers_only",
+              "label": "Samo lead trainers"
+            },
+            {
+              "value": "content_lead",
+              "label": "Specijalizovan content lead"
+            }
+          ]
+        },
+        {
+          "key": "recording_frequency",
+          "label": "Snimanje frequency",
+          "type": "text",
+          "placeholder": "1 nedeljno / 5 mesečno"
+        },
+        {
+          "key": "recording_equipment",
+          "label": "Equipment koji koristite za snimanje",
+          "type": "text"
+        },
+        {
+          "key": "post_production_resource",
+          "label": "Post-production resource (montaža)?",
+          "type": "text"
+        },
+        {
+          "key": "video_duration_target",
+          "label": "Video duration target",
+          "type": "select",
+          "options": [
+            {
+              "value": "short_clips",
+              "label": "Kratki klipovi (1-3 min)"
+            },
+            {
+              "value": "medium",
+              "label": "15-30 min"
+            },
+            {
+              "value": "full_class",
+              "label": "Full klasa (45-60 min)"
+            }
+          ]
+        },
+        {
+          "key": "exercise_library_content",
+          "label": "Imate exercise content sada?",
+          "type": "boolean"
+        },
+        {
+          "key": "monetization_model",
+          "label": "Da li bi Phase 2 sadržaj bio:",
+          "type": "select",
+          "options": [
+            {
+              "value": "free_all_members",
+              "label": "Free za sve members"
+            },
+            {
+              "value": "free_select_tiers",
+              "label": "Free samo za određene tiers"
+            },
+            {
+              "value": "premium_addon",
+              "label": "Add-on premium subscription"
+            },
+            {
+              "value": "pay_per_class",
+              "label": "Pay-per-class"
+            },
+            {
+              "value": "other",
+              "label": "Drugo"
+            }
+          ]
+        },
+        {
+          "key": "premium_tier_price",
+          "label": "Ako add-on premium — predložena cena",
+          "type": "currency"
+        },
+        {
+          "key": "non_member_pricing",
+          "label": "Hoćete li prodavati pristup app-u nečlanovima? Cena?",
+          "type": "text"
+        },
+        {
+          "key": "store_presence_must",
+          "label": "Da li je App Store + Google Play prisustvo must-have ili je PWA dovoljan?",
+          "type": "select",
+          "required": true,
+          "critical": true,
+          "options": [
+            {
+              "value": "pwa_only",
+              "label": "PWA dovoljan"
+            },
+            {
+              "value": "store_must",
+              "label": "Store prisustvo must-have"
+            }
+          ]
+        },
+        {
+          "key": "apple_developer_holder",
+          "label": "Ko otvara Apple Developer account ($99/yr)?",
+          "type": "text"
+        },
+        {
+          "key": "store_responsible_person",
+          "label": "Ko će biti app responsible person za store complaints / reviews?",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "key": "14-kpis",
+      "title": "Success Metrics & KPIs (Baseline)",
+      "description": "Da bismo dokazali impact, trebamo baseline mere PRE launch-a.",
+      "fields": [
+        {
+          "key": "current_bookings_per_week",
+          "label": "Trenutni broj bookings nedeljno",
+          "type": "number"
+        },
+        {
+          "key": "current_packages_sold_per_month",
+          "label": "Trenutni broj kupljenih packages mesečno",
+          "type": "number"
+        },
+        {
+          "key": "current_active_members",
+          "label": "Trenutni broj aktivnih members",
+          "type": "number"
+        },
+        {
+          "key": "current_churn_rate_pct",
+          "label": "Trenutna churn rate (%) mesečno",
+          "type": "number"
+        },
+        {
+          "key": "current_avg_revenue_per_member",
+          "label": "Trenutni avg revenue per member ($)",
+          "type": "currency"
+        },
+        {
+          "key": "front_desk_call_volume",
+          "label": "Front desk volume (poziva / walk-in pitanja vezana za booking)",
+          "type": "text"
+        },
+        {
+          "key": "mobile_vs_desktop_traffic",
+          "label": "Mobile vs desktop traffic na website-u (iz GA4)",
+          "type": "text"
+        },
+        {
+          "key": "current_conversion_rate",
+          "label": "Conversion rate iz visitor → first class (%)",
+          "type": "number"
+        },
+        {
+          "key": "referral_rate",
+          "label": "Member referral rate",
+          "type": "text"
+        },
+        {
+          "key": "kpi_target_app_bookings_pct",
+          "label": "Definicija uspeha 90 dana posle launch-a: % bookings u app-u",
+          "type": "number",
+          "placeholder": "60"
+        },
+        {
+          "key": "kpi_target_call_reduction_pct",
+          "label": "% reduction u front desk booking calls",
+          "type": "number"
+        },
+        {
+          "key": "kpi_target_app_installs",
+          "label": "Target broj app installs (Add to Home Screen / Capacitor)",
+          "type": "number"
+        },
+        {
+          "key": "kpi_target_repeat_visit_pct",
+          "label": "% improvement u repeat-visit rate",
+          "type": "number"
+        },
+        {
+          "key": "kpi_target_other",
+          "label": "Drugo (slobodno definišite)",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "key": "15-production",
+      "title": "Production Setup & Compliance",
+      "description": "Tehničke odluke pre go-live-a.",
+      "fields": [
+        {
+          "key": "app_domain_strategy",
+          "label": "Domain za app",
+          "type": "select",
+          "required": true,
+          "critical": true,
+          "options": [
+            {
+              "value": "subdomain",
+              "label": "Subdomain postojećeg website-a (book.studio.com)"
+            },
+            {
+              "value": "new_tld",
+              "label": "Novi top-level domain"
+            },
+            {
+              "value": "other",
+              "label": "Drugo"
+            }
+          ]
+        },
+        {
+          "key": "app_domain_value",
+          "label": "Konkretan domain (npr. app.luxefitness.com)",
+          "type": "text",
+          "required": true
+        },
+        {
+          "key": "current_dns_provider",
+          "label": "Trenutni DNS provider",
+          "type": "text"
+        },
+        {
+          "key": "dns_managed_by",
+          "label": "Ko upravlja DNS-om?",
+          "type": "select",
+          "options": [
+            {
+              "value": "us",
+              "label": "Mi (klijent)"
+            },
+            {
+              "value": "web_developer",
+              "label": "Postojeći web developer"
+            },
+            {
+              "value": "monte_kristo",
+              "label": "MonteKristo (kroz Cloudflare migration)"
+            }
+          ]
+        },
+        {
+          "key": "existing_website_role",
+          "label": "Postojeći website — da li ostaje kao landing ili app zamenjuje sve?",
+          "type": "select",
+          "options": [
+            {
+              "value": "stays_landing",
+              "label": "Ostaje kao landing"
+            },
+            {
+              "value": "app_replaces",
+              "label": "App zamenjuje sve"
+            },
+            {
+              "value": "hybrid",
+              "label": "Hibridno"
+            }
+          ]
+        },
+        {
+          "key": "transactional_email_from",
+          "label": "Email za booking confirmation, password reset, itd.",
+          "type": "email",
+          "required": true,
+          "critical": true
+        },
+        {
+          "key": "dns_access_for_email_setup",
+          "label": "Dajete pristup DNS-u za DKIM/SPF/DMARC setup?",
+          "type": "boolean"
+        },
+        {
+          "key": "privacy_policy_url",
+          "label": "Postojeći Privacy Policy URL",
+          "type": "url"
+        },
+        {
+          "key": "terms_url",
+          "label": "Postojeći Terms of Service URL",
+          "type": "url"
+        },
+        {
+          "key": "needs_cookie_consent",
+          "label": "Trebamo cookie consent banner (GDPR/CCPA)?",
+          "type": "boolean"
+        },
+        {
+          "key": "data_retention_days",
+          "label": "Data retention — koliko dana čuvamo brisanih account-a",
+          "type": "number",
+          "placeholder": "90"
+        },
+        {
+          "key": "has_dpa_template",
+          "label": "Imate Data Processing Agreement template?",
+          "type": "boolean"
+        },
+        {
+          "key": "coppa_concerns",
+          "label": "Imate children pod 13 (COPPA)?",
+          "type": "boolean"
+        },
+        {
+          "key": "code_ownership",
+          "label": "Ko vlasnik koda i podataka u Supabase-u?",
+          "type": "text",
+          "placeholder": "Klijent vlasništvo, MK maintain-uje"
+        },
+        {
+          "key": "backup_retention_pref",
+          "label": "Backup retention preference",
+          "type": "text",
+          "placeholder": "Daily 7d, weekly 4w, monthly 12m"
+        },
+        {
+          "key": "needs_sso",
+          "label": "Trebate SSO (Google Workspace / M365)?",
+          "type": "boolean"
+        },
+        {
+          "key": "mfa_required_admin",
+          "label": "Multi-factor auth na admin nalog-ima — obavezno?",
+          "type": "boolean"
+        },
+        {
+          "key": "monitoring_responsible",
+          "label": "Ko prati error monitoring posle launch-a?",
+          "type": "select",
+          "options": [
+            {
+              "value": "mk",
+              "label": "MonteKristo"
+            },
+            {
+              "value": "client",
+              "label": "Klijent"
+            },
+            {
+              "value": "shared",
+              "label": "Deljeno"
+            }
+          ]
+        },
+        {
+          "key": "sla_expectations",
+          "label": "SLA očekivanja za bug fixes posle launch-a",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "key": "16-clarifications",
+      "title": "Open Questions",
+      "description": "Pitanja koja moramo razrešiti pre nego krenemo da kodiramo.",
+      "fields": [
+        {
+          "key": "single_or_multi_location",
+          "label": "Single-location ili multi-location u Phase 1?",
+          "type": "select",
+          "required": true,
+          "critical": true,
+          "options": [
+            {
+              "value": "single",
+              "label": "Single-location"
+            },
+            {
+              "value": "multi",
+              "label": "Multi-location"
+            }
+          ]
+        },
+        {
+          "key": "cross_location_booking",
+          "label": "Member može bukirati na svim lokacijama, ili samo home location?",
+          "type": "select",
+          "options": [
+            {
+              "value": "all",
+              "label": "Sve lokacije"
+            },
+            {
+              "value": "home_only",
+              "label": "Samo home location"
+            }
+          ]
+        },
+        {
+          "key": "package_activation_timing",
+          "label": "Kad member kupi paket — odmah aktivan ili na prvi booking?",
+          "type": "select",
+          "options": [
+            {
+              "value": "immediate",
+              "label": "Odmah aktivan"
+            },
+            {
+              "value": "first_booking",
+              "label": "Aktivira se na prvi booking"
+            }
+          ]
+        },
+        {
+          "key": "package_transferable",
+          "label": "Paketi mogu da se transferuju među members (gift)?",
+          "type": "boolean"
+        },
+        {
+          "key": "house_account_corporate",
+          "label": "Imate \"house account\" za firme (corporate billing)?",
+          "type": "boolean"
+        },
+        {
+          "key": "refunds_through_app",
+          "label": "Refund-i kroz app ili samo manual front desk request?",
+          "type": "select",
+          "options": [
+            {
+              "value": "app",
+              "label": "Kroz app"
+            },
+            {
+              "value": "manual_only",
+              "label": "Samo manual / front desk"
+            }
+          ]
+        },
+        {
+          "key": "membership_freeze_supported",
+          "label": "Članarine podrazumevaju freeze opciju (pause membership)?",
+          "type": "boolean"
+        },
+        {
+          "key": "membership_freeze_current_flow",
+          "label": "Ako da — kako se trenutno radi?",
+          "type": "textarea"
+        },
+        {
+          "key": "waitlist_promotion_mode",
+          "label": "Waitlist — automatsko promovisanje ili manuelno staff?",
+          "type": "select",
+          "options": [
+            {
+              "value": "auto",
+              "label": "Automatsko"
+            },
+            {
+              "value": "manual",
+              "label": "Manuelno staff"
+            }
+          ]
+        },
+        {
+          "key": "recurring_booking_supported",
+          "label": "Recurring booking (\"ponedeljak 7pm svake nedelje\")?",
+          "type": "boolean"
+        },
+        {
+          "key": "buddy_friend_booking",
+          "label": "Buddy / friend booking (rezervisi za prijatelja)?",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "key": "17-assets-checklist",
+      "title": "Asset Gathering Checklist",
+      "description": "Sledite Asset upload tab da uploadujete sve. Ovde samo potvrdite šta imate spremno.",
+      "fields": [
+        {
+          "key": "assets_logos_ready",
+          "label": "Logo set (SVG + PNG varijante)",
+          "type": "boolean",
+          "critical": true
+        },
+        {
+          "key": "assets_brand_colors_fonts_ready",
+          "label": "Brand colors + fonts dokumentovan",
+          "type": "boolean",
+          "critical": true
+        },
+        {
+          "key": "assets_studio_photos_ready",
+          "label": "Studio photos (interior, exterior, classes)",
+          "type": "boolean",
+          "critical": true
+        },
+        {
+          "key": "assets_trainer_bios_ready",
+          "label": "Trainer bio set spreman po treneru (photo + short + long bio + meta)",
+          "type": "boolean",
+          "critical": true
+        },
+        {
+          "key": "assets_faq_doc_ready",
+          "label": "FAQ source (top 20 Q&A) Word/Doc",
+          "type": "boolean",
+          "critical": true
+        },
+        {
+          "key": "assets_policies_pdf_ready",
+          "label": "Cancellation/refund/no-show policy PDF",
+          "type": "boolean",
+          "critical": true
+        },
+        {
+          "key": "assets_waiver_pdf_ready",
+          "label": "Existing waiver / medical PDF",
+          "type": "boolean"
+        },
+        {
+          "key": "assets_phase2_videos_listed",
+          "label": "Phase 2 video content lista (URL-ovi postojećih)",
+          "type": "boolean"
+        },
+        {
+          "key": "assets_hero_video_ready",
+          "label": "Hero video za About stranu",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "key": "18-credentials",
+      "title": "Credentials & Access (1Password share)",
+      "description": "Sve credentials predajete kroz 1Password ili Bitwarden — ne ovde u plain text-u. Samo potvrdite šta je predato.",
+      "fields": [
+        {
+          "key": "cred_mb_api_shared",
+          "label": "MindBody Subscriber API (admin level)",
+          "type": "boolean",
+          "critical": true
+        },
+        {
+          "key": "cred_mb_siteid_provided",
+          "label": "MindBody SiteId (live + sandbox)",
+          "type": "boolean",
+          "critical": true
+        },
+        {
+          "key": "cred_mb_api_key_provided",
+          "label": "MindBody Public API key (posle partner approval-a)",
+          "type": "boolean"
+        },
+        {
+          "key": "cred_domain_registrar_shared",
+          "label": "Domain registrar login",
+          "type": "boolean"
+        },
+        {
+          "key": "cred_email_admin_shared",
+          "label": "Email (Workspace / M365) admin login",
+          "type": "boolean"
+        },
+        {
+          "key": "cred_existing_hosting_shared",
+          "label": "Postojeći website hosting login",
+          "type": "boolean"
+        },
+        {
+          "key": "cred_cloudflare_shared",
+          "label": "Cloudflare login (ako već imaju)",
+          "type": "boolean"
+        },
+        {
+          "key": "cred_analytics_invited",
+          "label": "GA4 + Meta Pixel access invite",
+          "type": "boolean"
+        },
+        {
+          "key": "cred_email_marketing_apikey_shared",
+          "label": "Email marketing API key (Mailchimp/Klaviyo)",
+          "type": "boolean"
+        },
+        {
+          "key": "cred_social_admins_tagged",
+          "label": "Social accounts (IG, FB) — admins tag-ovani",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "key": "19-final-signoff",
+      "title": "Kick-off Sign-off",
+      "description": "Pre Phase 1 dev-a klijent potvrđuje scope, timeline, success metrics.",
+      "fields": [
+        {
+          "key": "scope_confirmed",
+          "label": "Scope (Phase 1) potvrđen",
+          "type": "boolean",
+          "required": true,
+          "critical": true
+        },
+        {
+          "key": "timeline_acknowledged",
+          "label": "Timeline (9-10 nedelja Phase 1) potvrđen",
+          "type": "boolean",
+          "required": true,
+          "critical": true
+        },
+        {
+          "key": "success_metrics_agreed",
+          "label": "Success metrics dogovorene",
+          "type": "boolean",
+          "required": true,
+          "critical": true
+        },
+        {
+          "key": "communication_plan_agreed",
+          "label": "Communication plan (Slack channel, weekly sync) potvrđen",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "key": "infra_costs_acknowledged",
+          "label": "Infra costs ($25-90/mo Phase 1) prihvaćeni",
+          "type": "boolean",
+          "required": true,
+          "critical": true
+        },
+        {
+          "key": "contact_for_kickoff",
+          "label": "Primary contact za kick-off call (full name + email + telefon)",
+          "type": "textarea",
+          "required": true,
+          "critical": true
+        },
+        {
+          "key": "preferred_kickoff_window",
+          "label": "Preferred kick-off date / window",
+          "type": "text"
+        },
+        {
+          "key": "additional_notes",
+          "label": "Dodatne beleške / pitanja za MK pre starta",
+          "type": "textarea"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+/**
+ * MonteKristo Client Portal — scoped theme overrides.
+ *
+ * All portal pages render inside <div class="mk-portal"> so these CSS variable
+ * overrides apply ONLY to the portal and don't bleed into the main site.
+ *
+ * Brand palette (per CLAUDE.md):
+ *   - Coral #FF5C5C  → accent (CTA / progress fill / completion badges)
+ *   - Dark Navy #041122 → primary (headings, body text)
+ *   - Cream #FAF8F4  → page background
+ *   - White #FFFFFF  → card surfaces
+ *   - Body text #1D1F28
+ */
+
+.mk-portal {
+  --background: 38 35% 97%;        /* #FAF8F4 cream */
+  --foreground: 220 14% 14%;       /* #1D1F28 body text */
+
+  --card: 0 0% 100%;               /* white cards */
+  --card-foreground: 220 14% 14%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 220 14% 14%;
+
+  --primary: 219 79% 8%;           /* #041122 dark navy */
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 38 35% 92%;
+  --secondary-foreground: 219 79% 8%;
+
+  --muted: 38 20% 90%;
+  --muted-foreground: 220 8% 35%;
+
+  --accent: 0 100% 68%;            /* #FF5C5C coral */
+  --accent-foreground: 0 0% 100%;
+
+  --destructive: 0 84% 50%;
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 38 15% 84%;
+  --input: 38 15% 88%;
+  --ring: 0 100% 68%;
+
+  --radius: 0.625rem;
+
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+}
+
+.mk-portal h1,
+.mk-portal h2,
+.mk-portal h3,
+.mk-portal h4,
+.mk-portal h5,
+.mk-portal h6 {
+  font-family: "Poppins", "Inter", system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.mk-portal .bg-cream {
+  background-color: #FAF8F4;
+}
+.mk-portal .brand-coral {
+  color: #FF5C5C;
+}
+.mk-portal .brand-navy {
+  color: #041122;
+}
+
+/* Helper for the AppShell fade-in animation we reference. Mirrored from main config. */
+@keyframes mk-portal-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.mk-portal .animate-fade-in {
+  animation: mk-portal-fade-in 0.25s ease-out;
+}
