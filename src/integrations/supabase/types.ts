@@ -638,6 +638,11 @@ export type Database = {
           blocked_reason: string | null
           checkin_time: string | null
           checkout_time: string | null
+          claim_approved_amount: number | null
+          claim_deadline_at: string | null
+          claim_decided_at: string | null
+          claim_filed_amount: number | null
+          claim_filed_at: string | null
           claim_id: string | null
           claim_provider: string | null
           claim_status: Database["public"]["Enums"]["claim_status"] | null
@@ -692,6 +697,11 @@ export type Database = {
           blocked_reason?: string | null
           checkin_time?: string | null
           checkout_time?: string | null
+          claim_approved_amount?: number | null
+          claim_deadline_at?: string | null
+          claim_decided_at?: string | null
+          claim_filed_amount?: number | null
+          claim_filed_at?: string | null
           claim_id?: string | null
           claim_provider?: string | null
           claim_status?: Database["public"]["Enums"]["claim_status"] | null
@@ -746,6 +756,11 @@ export type Database = {
           blocked_reason?: string | null
           checkin_time?: string | null
           checkout_time?: string | null
+          claim_approved_amount?: number | null
+          claim_deadline_at?: string | null
+          claim_decided_at?: string | null
+          claim_filed_amount?: number | null
+          claim_filed_at?: string | null
           claim_id?: string | null
           claim_provider?: string | null
           claim_status?: Database["public"]["Enums"]["claim_status"] | null
@@ -822,6 +837,7 @@ export type Database = {
           bedrooms: number | null
           created_at: string
           default_housekeeper: string | null
+          default_housekeeper_id: string | null
           external_id: string | null
           external_source: string | null
           id: string
@@ -839,6 +855,7 @@ export type Database = {
           bedrooms?: number | null
           created_at?: string
           default_housekeeper?: string | null
+          default_housekeeper_id?: string | null
           external_id?: string | null
           external_source?: string | null
           id?: string
@@ -856,6 +873,7 @@ export type Database = {
           bedrooms?: number | null
           created_at?: string
           default_housekeeper?: string | null
+          default_housekeeper_id?: string | null
           external_id?: string | null
           external_source?: string | null
           id?: string
@@ -869,6 +887,13 @@ export type Database = {
           updated_at?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "units_default_housekeeper_id_fkey"
+            columns: ["default_housekeeper_id"]
+            isOneToOne: false
+            referencedRelation: "vendors"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "units_property_id_fkey"
             columns: ["property_id"]
@@ -902,6 +927,7 @@ export type Database = {
       vendors: {
         Row: {
           active: boolean | null
+          address: string | null
           contact_name: string | null
           created_at: string
           email: string | null
@@ -915,6 +941,7 @@ export type Database = {
         }
         Insert: {
           active?: boolean | null
+          address?: string | null
           contact_name?: string | null
           created_at?: string
           email?: string | null
@@ -928,6 +955,7 @@ export type Database = {
         }
         Update: {
           active?: boolean | null
+          address?: string | null
           contact_name?: string | null
           created_at?: string
           email?: string | null
@@ -955,7 +983,7 @@ export type Database = {
         Returns: {
           created_at: string
           id: string
-          status: string
+          status: Database["public"]["Enums"]["task_status"]
           title: string
         }[]
       }
@@ -1135,7 +1163,12 @@ export type Database = {
     Enums: {
       app_role: "field_staff" | "admin" | "supervisor" | "manager"
       claim_status: "pending" | "filed" | "approved" | "denied" | "closed"
-      damage_classification: "wear_and_tear" | "guest_damage" | "unclassified"
+      damage_classification:
+        | "wear_and_tear"
+        | "guest_damage"
+        | "unclassified"
+        | "owner_damage"
+        | "management_damage"
       housekeeping_type:
         | "checkout_clean"
         | "mid_stay_clean"
@@ -1313,7 +1346,13 @@ export const Constants = {
     Enums: {
       app_role: ["field_staff", "admin", "supervisor", "manager"],
       claim_status: ["pending", "filed", "approved", "denied", "closed"],
-      damage_classification: ["wear_and_tear", "guest_damage", "unclassified"],
+      damage_classification: [
+        "wear_and_tear",
+        "guest_damage",
+        "unclassified",
+        "owner_damage",
+        "management_damage",
+      ],
       housekeeping_type: [
         "checkout_clean",
         "mid_stay_clean",
